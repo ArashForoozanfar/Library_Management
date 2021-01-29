@@ -139,6 +139,6 @@ int main()
 		cout << "Select 3 to delete a book information" << endl;
 	}
 	else {
-		cout << "Username or password is incorrect!, Please try again ...";
+		cout << "Username or password is incorrect!, Please try again...";
 	}
 }
