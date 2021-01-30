@@ -11,7 +11,7 @@ int main()
 {
 	int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0, h = 0, k = 0, l = 0, n = 0;
 	Info I[A], J[A], D[A];
-	string userName, password, userName1, password1, userName2, password2, newusername, newpassword, sa, sb, sc, sd, se, sf;
+	string userName, password, userName1, password1, userName2, password2, newusername, newpassword, sa, sb, sc, sd, se, sf, sg, sh;
 	fstream Admin("Admins.txt", ios::in | ios::out | ios::app);
 	if (!Admin)
 		cout << "Couldnot open file Admins.txt" << endl;
@@ -154,10 +154,10 @@ int main()
 				int m = 0;
 				while (m < f) {
 					if (m != l) {
-						se = D[m].getUsername();
-						Admind << se << endl;
-						sf = D[m].getPassword();
-						Admind << sf << endl;
+						sg = D[m].getUsername();
+						Admind << sg << endl;
+						sh = D[m].getPassword();
+						Admind << sh << endl;
 					}
 					m++;
 				}
