@@ -11,12 +11,20 @@ int main()
 {
 	int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0, h = 0, k = 0, l = 0;
 	Info I[A], J[A], D[A];
-	string userName, password, userName1, password1, userName2, password2, newusername, newpassword, sa, sb, sc, sd;
+	string userName, password, userName1, password1, userName2, password2, newusername, newpassword, sa, sb, sc, sd, se, sf;
 	fstream Admin("Admins.txt", ios::in | ios::out | ios::app);
 	fstream User("Users.txt", ios::in | ios::out | ios::app);
 	ifstream ab("AdminNumber.txt", ios::in);
 	ab >> f;
 	ab.close();
+	/*fstream ADname("Admins.txt", ios::in | ios::out | ios::app);
+	fstream USname("Users.txt", ios::in | ios::out | ios::app);
+	fstream ADnum("AdminNumber.txt", ios::in | ios::out | ios::app);
+	fstream USnum("Usernumber.txt", ios::in | ios::out | ios::app);
+	ADname.close();
+	ADnum.close();
+	USname.close();
+	USnum.close();*/
 	ifstream cd("UserNumber.txt", ios::in);
 	cd >> h;
 	cd.close();
@@ -107,15 +115,15 @@ int main()
 		}
 		else if (a == 2) {
 			cout << "You want to delete an admin or user information!" << endl;
-			cout << "Please enter the username of admin you want to delete: " << endl;
+			cout << "Please enter the username of admin you want to delete: ";
 			cin >> userName2;
-			cout << "Please enter the password of admin you want to delete: " << endl;
+			cout << "Please enter the password of admin you want to delete: ";
 			cin >> password2;
 			for (int i = 0; i < f; i++) {
-				Admin >> sa;
-				D[i].setUsername(sa);
-				Admin >> sb;
-				D[i].setPassword(sb);
+				Admin >> se;
+				D[i].setUsername(se);
+				Admin >> sf;
+				D[i].setPassword(sf);
 				if (D[i].getUsername() == userName2 && D[i].getPassword() == password2) {
 					l = i;
 					cout << "L: " << l << endl;
@@ -128,8 +136,10 @@ int main()
 			int m = 0;
 			while (m < f) {
 				if (m != l) {
-					Admind << D[m].getUsername() << endl;
-					Admind << D[m].getPassword() << endl;
+					se = D[m].getUsername();
+					Admind << se << endl;
+					sf = D[m].getPassword();
+					Admind << sf << endl;
 				}
 				m++;
 			}
