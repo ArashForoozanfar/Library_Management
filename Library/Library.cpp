@@ -118,6 +118,7 @@ int main()
 				D[i].setPassword(sb);
 				if (D[i].getUsername() == userName2 && D[i].getPassword() == password2) {
 					l = i;
+					cout << "L: " << l << endl;
 					break;
 				}
 			}
