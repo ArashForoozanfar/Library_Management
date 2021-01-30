@@ -3,41 +3,15 @@
 #include <fstream>
 #include <cstring>
 #include <algorithm>
+#include "classes.h"
 #define A 100
 using namespace std;
-class Info {
-public:
-	string getUsername();
-	string getPassword();
-	void setUsername(string username);
-	void setPassword(string password);
-private:
-	string username;
-	string password;
-};
-
-string Info::getUsername()
-{
-	return username;
-}
-string Info::getPassword()
-{
-	return password;
-}
-void Info::setUsername(string username)
-{
-	this->username = username;
-}
-void Info::setPassword(string password)
-{
-	this->password = password;
-}
 
 int main()
 {
-	int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0, h = 0, k = 0;
-	Info I[A], J[A];
-	string userName, password, userName1, password1, newusername, newpassword, sa, sb, sc, sd;
+	int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0, h = 0, k = 0, l = 0;
+	Info I[A], J[A], D[A];
+	string userName, password, userName1, password1, userName2, password2, newusername, newpassword, sa, sb, sc, sd;
 	fstream Admin("Admins.txt", ios::in | ios::out | ios::app);
 	fstream User("Users.txt", ios::in | ios::out | ios::app);
 	ifstream ab("AdminNumber.txt", ios::in);
@@ -130,6 +104,42 @@ int main()
 				cout << "Information submitted successfully!";
 				User.close();
 			}
+		}
+		else if (a == 2) {
+			cout << "You want to delete an admin or user information!" << endl;
+			cout << "Please enter the username of admin you want to delete: " << endl;
+			cin >> userName2;
+			cout << "Please enter the password of admin you want to delete: " << endl;
+			cin >> password2;
+			for (int i = 0; i < f; i++) {
+				Admin >> sa;
+				D[i].setUsername(sa);
+				Admin >> sb;
+				D[i].setPassword(sb);
+				if (D[i].getUsername() == userName2 && D[i].getPassword() == password2) {
+					l = i;
+					break;
+				}
+			}
+			Admin.close();
+			remove("Admins.txt");
+			fstream Admind("Admins.txt", ios::in | ios::out | ios::app);
+			int m = 0;
+			while (m < f) {
+				if (m != l) {
+					Admind << D[m].getUsername() << endl;
+					Admind << D[m].getPassword() << endl;
+				}
+				m++;
+			}
+			ifstream ab("AdminNumber.txt", ios::in);
+			ab >> f;
+			f--;
+			ab.close();
+			remove("AdminNumber.txt");
+			ofstream AB("AdminNumber.txt", ios::out);
+			AB << f;
+			AB.close();
 		}
 	}
 	else if (k == 1 && g == 0) {
