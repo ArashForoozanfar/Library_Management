@@ -133,24 +133,27 @@ int main()
 			cout << "Select 2 to delete a user" << endl;
 			cin >> n;
 			if (n == 1) {
+				fstream Admin("Admins.txt", ios::in | ios::out | ios::app);
 				cout << "Please enter the username of admin you want to delete: ";
 				cin >> userName2;
+				cout << "Please enter the password of admin you want to delete: ";
+				cin >> password2;
 				Admin.seekg(0, ios::beg);
 				for (int i = 0; i < f; i++) {
 					Admin >> se;
 					D[i].setUsername(se);
-					//cout << "D[" << i << "].getUsername()= " << D[i].getUsername() << endl;
+					cout << "D[" << i << "].getUsername()= " << D[i].getUsername() << endl;
 					Admin >> sf;
 					D[i].setPassword(sf);
-					//cout << "D[" << i << "].getpassword()= " << D[i].getPassword() << endl;
-					if (D[i].getUsername() == userName2) {
+					cout << "D[" << i << "].getpassword()= " << D[i].getPassword() << endl;
+					if (D[i].getUsername() == userName2 && D[i].getPassword() == password2) {
 						l = i;
-						//cout << "L: " << l << endl;
+						cout << "L: " << l << endl;
 						o = 1;
 					}
 				}
 				if (o == 0) {
-					cout << "The admin you wont to delete, was not found!" << endl;
+					cout << "The admin you want to delete, was not found!" << endl;
 				}
 				else {
 					Admin.close();
@@ -162,10 +165,10 @@ int main()
 					while (m < f) {
 						if (m != l) {
 							sg = D[m].getUsername();
-							//cout << "Dm[" << m << "].getUsername()=" << sg << endl;
+							cout << "Dm[" << m << "].getUsername()=" << sg << endl;
 							Admind << sg << endl;
 							sh = D[m].getPassword();
-							//cout << "Dm[" << m << "].getpassword()=" << sh << endl;
+							cout << "Dm[" << m << "].getpassword()=" << sh << endl;
 							Admind << sh << endl;
 						}
 						m++;
@@ -187,24 +190,27 @@ int main()
 				}
 			}
 			else if (n == 2) {
+				fstream User("Users.txt", ios::in | ios::out | ios::app);
 				cout << "Please enter the username of user you want to delete: ";
 				cin >> userName2;
+				cout << "Please enter the password of user you want to delete: ";
+				cin >> password2;
 				User.seekg(0, ios::beg);
 				for (int i = 0; i < f; i++) {
 					User >> se;
 					D[i].setUsername(se);
-					//cout << "D[" << i << "].getUsername()= " << D[i].getUsername() << endl;
+					cout << "D[" << i << "].getUsername()= " << D[i].getUsername() << endl;
 					User >> sf;
 					D[i].setPassword(sf);
-					//cout << "D[" << i << "].getpassword()= " << D[i].getPassword() << endl;
+					cout << "D[" << i << "].getpassword()= " << D[i].getPassword() << endl;
 					if (D[i].getUsername() == userName2) {
 						l = i;
-						//cout << "L: " << l << endl;
+						cout << "L: " << l << endl;
 						o = 1;
 					}
 				}
 				if (o == 0) {
-					cout << "The user you wont to delete, was not found!" << endl;
+					cout << "The user you want to delete, was not found!" << endl;
 				}
 				else {
 					User.close();
@@ -216,10 +222,10 @@ int main()
 					while (m < f) {
 						if (m != l) {
 							sg = D[m].getUsername();
-							//cout << "Dm[" << m << "].getUsername()=" << sg << endl;
+							cout << "Dm[" << m << "].getUsername()=" << sg << endl;
 							Userd << sg << endl;
 							sh = D[m].getPassword();
-							//cout << "Dm[" << m << "].getpassword()=" << sh << endl;
+							cout << "Dm[" << m << "].getpassword()=" << sh << endl;
 							Userd << sh << endl;
 						}
 						m++;
