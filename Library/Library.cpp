@@ -9,9 +9,9 @@ using namespace std;
 
 int main()
 {
-	int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0, h = 0, k = 0, l = 0, n = 0, o = 0;
-	Info I[A], J[A], D[A];
-	string userName, password, userName1, password1, userName2, password2, newusername, newpassword, sa, sb, sc, sd, se, sf, sg, sh;
+	int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0, h = 0, k = 0, l = 0, n = 0, o = 0, p = 0, q = 0, r = 0, s = 0;
+	Info I[A], J[A], D[A], U[A];
+	string userName, password, userName1, password1, userName2, password2, userName3, password3, newusername, newpassword, sa, sb, sc, sd, se, sf, sg, sh, si, sj;
 	fstream Admin("Admins.txt", ios::in | ios::out | ios::app);
 	if (!Admin)
 		cout << "Couldnot open file Admins.txt" << endl;
@@ -74,6 +74,7 @@ int main()
 		cout << "Select 4 to add new book information" << endl;
 		cout << "Select 5 to update a book information" << endl;
 		cout << "Select 6 to delete a book information" << endl;
+		cout << "Select 7 to search and show books informations" << endl;
 		cin >> a;
 		if (a == 1) {
 			cout << "You want to add new admin or user information" << endl;
@@ -196,7 +197,7 @@ int main()
 				cout << "Please enter the password of user you want to delete: ";
 				cin >> password2;
 				User.seekg(0, ios::beg);
-				for (int i = 0; i < f; i++) {
+				for (int i = 0; i < h; i++) {
 					User >> se;
 					D[i].setUsername(se);
 					//cout << "D[" << i << "].getUsername()= " << D[i].getUsername() << endl;
@@ -219,7 +220,7 @@ int main()
 					if (!Userd)
 						cout << "Couldnot open file Users.txt" << endl;
 					int m = 0;
-					while (m < f) {
+					while (m < h) {
 						if (m != l) {
 							sg = D[m].getUsername();
 							//cout << "Dm[" << m << "].getUsername()=" << sg << endl;
@@ -247,12 +248,170 @@ int main()
 				}
 			}
 		}
+		else if (a == 3) {
+			cout << "You want to update an admin or user information!" << endl;
+			cout << "Select 1 to update an admin" << endl;
+			cout << "Select 2 to update a user" << endl;
+			cin >> p;
+			if (p == 1) {
+				fstream Admin("Admins.txt", ios::in | ios::out | ios::app);
+				cout << "You want to update an admin information!" << endl;
+				cout << "Please enter the username of admin you want to update: ";
+				cin >> userName3;
+				cout << "Please enter the password of admin you want to update: ";
+				cin >> password3;
+				Admin.seekg(0, ios::beg);
+				for (int i = 0; i < f; i++) {
+					Admin >> si;
+					U[i].setUsername(si);
+					Admin >> sj;
+					U[i].setPassword(sj);
+					if (U[i].getUsername() == userName3 && U[i].getPassword() == password3) {
+						q = i;
+						r = 1;
+					} 
+				}
+				Admin.close();
+				remove("Admins.txt");
+				if (r == 0) {
+					cout << "The admin you want to update was not found!" << endl;
+				}
+				else {
+					cout << "Select 1 to update username:( " << userName3 << " )" << endl;
+					cout << "Select 2 to update password:( " << password3 << " )" << endl;
+					cin >> s;
+					if (s == 1) {
+						cout << "You want to update username!" << endl;
+						cout << "Please enter new username: ";
+						cin >> newusername;
+						fstream AU("Admins.txt", ios::out | ios::app);
+						if (!AU)
+							cout << "Couldnot open file Admins.txt";
+						int t = 0;
+						while (t < f) {
+							if (t != q) {
+								si = U[t].getUsername();
+								AU << si << endl;
+								sj = U[t].getPassword();
+								AU << sj << endl;
+							}
+							else if (t == q) {
+								AU << newusername << endl;
+								sj = U[t].getPassword();
+								AU << sj << endl;
+							}
+							t++;
+						}
+						cout << "Information updated successfully!" << endl;
+					}
+					else if (s == 2) {
+						cout << "You want to update password!" << endl;
+						cout << "Please enter new password: ";
+						cin >> newpassword;
+						fstream AU("Admins.txt", ios::out | ios::app);
+						if (!AU)
+							cout << "Couldnot open file Admins.txt";
+						int t = 0;
+						while (t < f) {
+							if (t != q) {
+								si = U[t].getUsername();
+								AU << si << endl;
+								sj = U[t].getPassword();
+								AU << sj << endl;
+							}
+							else if (t == q) {
+								si = U[t].getUsername();
+								AU << si << endl;
+								AU << newpassword << endl;
+							}
+							t++;
+						}
+						cout << "Information updated successfully!" << endl;
+					}
+				}
+			}
+			else if (p == 2) {
+				fstream User("Users.txt", ios::in | ios::out | ios::app);
+				cout << "You want to update a user information!" << endl;
+				cout << "Please enter the username of user you want to update: ";
+				cin >> userName3;
+				cout << "Please enter the password of user you want to update: ";
+				cin >> password3;
+				User.seekg(0, ios::beg);
+				for (int i = 0; i < h; i++) {
+					User >> si;
+					U[i].setUsername(si);
+					User >> sj;
+					U[i].setPassword(sj);
+					if (U[i].getUsername() == userName3 && U[i].getPassword() == password3) {
+						q = i;
+						r = 1;
+					}
+				}
+				User.close();
+				remove("Users.txt");
+				if (r == 0) {
+					cout << "The user you want to update was not found!" << endl;
+				}
+				else {
+					cout << "Select 1 to update username:( " << userName3 << " )" << endl;
+					cout << "Select 2 to update password:( " << password3 << " )" << endl;
+					cin >> s;
+					if (s == 1) {
+						cout << "You want to update username!" << endl;
+						cout << "Please enter new username: ";
+						cin >> newusername;
+						fstream UU("Users.txt", ios::out | ios::app);
+						if (!UU)
+							cout << "Couldnot open file Users.txt";
+						int t = 0;
+						while (t < h) {
+							if (t != q) {
+								si = U[t].getUsername();
+								UU << si << endl;
+								sj = U[t].getPassword();
+								UU << sj << endl;
+							}
+							else if (t == q) {
+								UU << newusername << endl;
+								sj = U[t].getPassword();
+								UU << sj << endl;
+							}
+							t++;
+						}
+						cout << "Information updated successfully!" << endl;
+					}
+					else if (s == 2) {
+						cout << "You want to update password!" << endl;
+						cout << "Please enter new password :";
+						cin >> newpassword;
+						fstream UU("Users.txt", ios::out | ios::app);
+						if (!UU)
+							cout << "Couldnot open file Users.txt";
+						int t = 0;
+						while (t < f) {
+							if (t != q) {
+								si = U[t].getUsername();
+								UU << si << endl;
+								sj = U[t].getPassword();
+								UU << sj << endl;
+							}
+							else if (t == q) {
+								si = U[t].getUsername();
+								UU << si << endl;
+								UU << newpassword << endl;
+							}
+							t++;
+						}
+						cout << "Information updated successfully!" << endl;
+					}
+				}
+			}
+		}
 	}
 	else if (k == 1 && g == 0) {
 		cout << "You entered successfully as a user!" << endl;
-		cout << "Select 1 to add new book information" << endl;
-		cout << "Select 2 to update a book information" << endl;
-		cout << "Select 3 to delete a book information" << endl;
+		cout << "Select 1 to search and show book information" << endl;
 	}
 	else {
 		cout << "Username or password is incorrect!, Please try again...";
