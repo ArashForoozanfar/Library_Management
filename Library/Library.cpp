@@ -142,13 +142,13 @@ int main()
 				for (int i = 0; i < f; i++) {
 					Admin >> se;
 					D[i].setUsername(se);
-					cout << "D[" << i << "].getUsername()= " << D[i].getUsername() << endl;
+					//cout << "D[" << i << "].getUsername()= " << D[i].getUsername() << endl;
 					Admin >> sf;
 					D[i].setPassword(sf);
-					cout << "D[" << i << "].getpassword()= " << D[i].getPassword() << endl;
+					//cout << "D[" << i << "].getpassword()= " << D[i].getPassword() << endl;
 					if (D[i].getUsername() == userName2 && D[i].getPassword() == password2) {
 						l = i;
-						cout << "L: " << l << endl;
+						//cout << "L: " << l << endl;
 						o = 1;
 					}
 				}
@@ -165,10 +165,10 @@ int main()
 					while (m < f) {
 						if (m != l) {
 							sg = D[m].getUsername();
-							cout << "Dm[" << m << "].getUsername()=" << sg << endl;
+							//cout << "Dm[" << m << "].getUsername()=" << sg << endl;
 							Admind << sg << endl;
 							sh = D[m].getPassword();
-							cout << "Dm[" << m << "].getpassword()=" << sh << endl;
+							//cout << "Dm[" << m << "].getpassword()=" << sh << endl;
 							Admind << sh << endl;
 						}
 						m++;
@@ -199,13 +199,13 @@ int main()
 				for (int i = 0; i < f; i++) {
 					User >> se;
 					D[i].setUsername(se);
-					cout << "D[" << i << "].getUsername()= " << D[i].getUsername() << endl;
+					//cout << "D[" << i << "].getUsername()= " << D[i].getUsername() << endl;
 					User >> sf;
 					D[i].setPassword(sf);
-					cout << "D[" << i << "].getpassword()= " << D[i].getPassword() << endl;
+					//cout << "D[" << i << "].getpassword()= " << D[i].getPassword() << endl;
 					if (D[i].getUsername() == userName2) {
 						l = i;
-						cout << "L: " << l << endl;
+						//cout << "L: " << l << endl;
 						o = 1;
 					}
 				}
@@ -222,10 +222,10 @@ int main()
 					while (m < f) {
 						if (m != l) {
 							sg = D[m].getUsername();
-							cout << "Dm[" << m << "].getUsername()=" << sg << endl;
+							//cout << "Dm[" << m << "].getUsername()=" << sg << endl;
 							Userd << sg << endl;
 							sh = D[m].getPassword();
-							cout << "Dm[" << m << "].getpassword()=" << sh << endl;
+							//cout << "Dm[" << m << "].getpassword()=" << sh << endl;
 							Userd << sh << endl;
 						}
 						m++;
