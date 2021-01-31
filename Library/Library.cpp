@@ -53,6 +53,7 @@ int main()
 		}
 		g = 0;
 	}
+	Admin.close();
 	for (int i = 0; i < h; i++) {
 		User >> sc;
 		J[i].setUsername(sc);
@@ -64,6 +65,7 @@ int main()
 		}
 		k = 0;
 	}
+	User.close();
 	if (g == 1) {
 		cout << "You entered successfully as an Adminstrator!" << endl;
 		cout << "Select 1 to add new admin or user" << endl;
@@ -91,14 +93,15 @@ int main()
 				Ma << c;
 				Ma.close();
 				//#include "InsertAdmin.txt"
+				fstream IA("Admins.txt", ios::out | ios::app);
 				cout << "Enter username:";
 				cin >> userName1;
 				cout << "Enter password:";
 				cin >> password1;
-				Admin << userName1 << endl;
-				Admin << password1 << endl;
+				IA << userName1 << endl;
+				IA << password1 << endl;
 				cout << "Information submitted successfully!";
-				Admin.close();
+				IA.close();
 			}
 			else if (b == 2) {
 				ifstream Nu("UserNumber.txt", ios::in);
@@ -113,14 +116,15 @@ int main()
 				Mu << d;
 				Mu.close();
 				//#include "InsertUser.txt"
+				fstream UI("Users.txt", ios::out | ios::app);
 				cout << "Enter username:";
 				cin >> userName1;
 				cout << "Enter password:";
 				cin >> password1;
-				User << userName1 << endl;
-				User << password1 << endl;
+				UI << userName1 << endl;
+				UI << password1 << endl;
 				cout << "Information submitted successfully!";
-				User.close();
+				UI.close();
 			}
 		}
 		else if (a == 2) {
