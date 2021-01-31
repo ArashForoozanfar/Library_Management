@@ -9,7 +9,7 @@ using namespace std;
 
 int main()
 {
-	int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0, h = 0, k = 0, l = 0, n = 0;
+	int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0, h = 0, k = 0, l = 0, n = 0, o = 0;
 	Info I[A], J[A], D[A];
 	string userName, password, userName1, password1, userName2, password2, newusername, newpassword, sa, sb, sc, sd, se, sf, sg, sh;
 	fstream Admin("Admins.txt", ios::in | ios::out | ios::app);
@@ -51,9 +51,7 @@ int main()
 			g = 1;
 			break;
 		}
-		else {
-			g = 0;
-		}
+		g = 0;
 	}
 	for (int i = 0; i < h; i++) {
 		User >> sc;
@@ -64,9 +62,7 @@ int main()
 			k = 1;
 			break;
 		}
-		else {
-			k = 0;
-		}
+		k = 0;
 	}
 	if (g == 1) {
 		cout << "You entered successfully as an Adminstrator!" << endl;
@@ -135,46 +131,56 @@ int main()
 			if (n == 1) {
 				cout << "Please enter the username of admin you want to delete: ";
 				cin >> userName2;
+				Admin.seekg(0, ios::beg);
 				for (int i = 0; i < f; i++) {
 					Admin >> se;
 					D[i].setUsername(se);
+					cout << "D[" << i << "].getUsername()= " << D[i].getUsername() << endl;
 					Admin >> sf;
 					D[i].setPassword(sf);
+					cout << "D[" << i << "].getpassword()= " << D[i].getPassword() << endl;
 					if (D[i].getUsername() == userName2) {
 						l = i;
 						cout << "L: " << l << endl;
-						break;
+						o = 1;
 					}
 				}
-				Admin.close();
-				remove("Admins.txt");
-				fstream Admind("Admins.txt", ios::in | ios::out | ios::app);
-				if (!Admind)
-					cout << "Couldnot open file Admins.txt" << endl;
-				int m = 0;
-				while (m < f) {
-					if (m != l) {
-						sg = D[m].getUsername();
-						Admind << sg << endl;
-						sh = D[m].getPassword();
-						Admind << sh << endl;
-					}
-					m++;
+				if (o == 0) {
+					cout << "The admin you wont to delete, was not found!" << endl;
 				}
-				Admind.close();
-				cout << "Information deleted successfully!" << endl;
-				ifstream ab("AdminNumber.txt", ios::in);
-				if (!ab)
-					cout << "Couldnot open file AdminNumber.txt" << endl;
-				ab >> f;
-				f--;
-				ab.close();
-				remove("AdminNumber.txt");
-				ofstream AB("AdminNumber.txt", ios::out);
-				if (!AB)
-					cout << "Couldnot open file AdminNumber.txt" << endl;
-				AB << f;
-				AB.close();
+				else {
+					Admin.close();
+					remove("Admins.txt");
+					fstream Admind("Admins.txt", ios::in | ios::out | ios::app);
+					if (!Admind)
+						cout << "Couldnot open file Admins.txt" << endl;
+					int m = 0;
+					while (m < f) {
+						if (m != l) {
+							sg = D[m].getUsername();
+							cout << "Dm[" << m << "].getUsername()=" << sg << endl;
+							Admind << sg << endl;
+							sh = D[m].getPassword();
+							cout << "Dm[" << m << "].getpassword()=" << sh << endl;
+							Admind << sh << endl;
+						}
+						m++;
+					}
+					Admind.close();
+					cout << "Information deleted successfully!" << endl;
+					ifstream ab("AdminNumber.txt", ios::in);
+					if (!ab)
+						cout << "Couldnot open file AdminNumber.txt" << endl;
+					ab >> f;
+					f--;
+					ab.close();
+					remove("AdminNumber.txt");
+					ofstream AB("AdminNumber.txt", ios::out);
+					if (!AB)
+						cout << "Couldnot open file AdminNumber.txt" << endl;
+					AB << f;
+					AB.close();
+				}
 			}
 			else if (n == 2) {
 
