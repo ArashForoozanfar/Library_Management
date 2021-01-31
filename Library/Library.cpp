@@ -389,7 +389,7 @@ int main()
 						if (!UU)
 							cout << "Couldnot open file Users.txt";
 						int t = 0;
-						while (t < f) {
+						while (t < h) {
 							if (t != q) {
 								si = U[t].getUsername();
 								UU << si << endl;
