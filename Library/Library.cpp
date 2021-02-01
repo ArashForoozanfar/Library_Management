@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <cstring>
 #include <algorithm>
 #include "classes.h"
 #define A 100
@@ -665,6 +664,9 @@ int main()
 					cout << "Information updated successfully!" << endl;
 				}
 			}
+		}
+		else if (a == 7) {
+			
 		}
 	}
 	else if (k == 1 && g == 0) {
