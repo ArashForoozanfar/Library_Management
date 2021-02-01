@@ -789,7 +789,7 @@ int main()
 		}
 	}
 	else if (k == 1 && g == 0) {
-		Log << "Successfully Login as a User" << endl;
+		Log << "Successfull Login as a User" << endl;
 		cout << "You entered successfully as a user!" << endl;
 		cout << "You want to search and show a book informations!" << endl;
 		fstream Book("Books.txt", ios::in | ios::out | ios::app);
