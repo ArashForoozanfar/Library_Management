@@ -1,8 +1,0 @@
-cout << "Enter username:";
-cin >> userName1;
-cout << "Enter password:";
-cin >> password1;
-fstream User("Users.txt", ios::out | ios::in | ios::app);
-User << userName1 << endl;
-User << password1 << endl;
-cout << "Information submitted successfully!";
