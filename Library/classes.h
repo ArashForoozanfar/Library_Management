@@ -17,13 +17,16 @@ private:
 class Book {
 public:
 	string getBookName();
+	string getBookWriter();
 	string getYear();
 	string getPageNum();
 	void setBookName(string bookName);
+	void setBookWriter(string bookWriter);
 	void setYear(string year);
 	void setPageNum(string pageNum);
 private:
 	string bookName;
+	string bookWriter;
 	string year;
 	string pageNum;
 };
@@ -48,6 +51,10 @@ string Book::getBookName()
 {
 	return bookName;
 }
+string Book::getBookWriter()
+{
+	return bookWriter;
+}
 string Book::getYear()
 {
 	return year;
@@ -59,6 +66,10 @@ string Book::getPageNum()
 void Book::setBookName(string bookName)
 {
 	this->bookName = bookName;
+}
+void Book::setBookWriter(string bookWriter)
+{
+	this->bookWriter = bookWriter;
 }
 void Book::setYear(string year)
 {

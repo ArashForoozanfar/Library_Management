@@ -13,7 +13,7 @@ int main()
 	Info I[A], J[A], D[A], U[A];
 	Book B[A];
 	string userName, password, userName1, password1, userName2, password2, userName3, password3, newusername, newpassword, sa, sb, sc, sd, se, sf, sg, sh, si, sj;
-	string bookName, writerName, editionYear, pageNumber;
+	string bookName, writerName, editionYear, pageNumber, newBookName, newWriterName, newEditionYear, newPageNumber;
 	fstream Admin("Admins.txt", ios::in | ios::out | ios::app);
 	if (!Admin)
 		cout << "Couldnot open file Admins.txt" << endl;
@@ -30,6 +30,11 @@ int main()
 		cout << "Couldnot open file UserNumber.txt" << endl;
 	cd >> h;
 	cd.close();
+	ifstream ef("BookNumber.txt", ios::in);
+	if (!ef)
+		cout << "Couldnot open file BookNumber.txt" << endl;
+	ef >> u;
+	ef.close();
 	cout << "Welcome to library management application!" << endl;
 	cout << "Please enter username and password for login:" << endl;
 	cout << "Username: ";
@@ -63,11 +68,11 @@ int main()
 	if (g == 1) {
 		cout << "You entered successfully as an Adminstrator!" << endl;
 		cout << "Select 1 to add new admin or user" << endl;
-		cout << "Select 2 to delete a admin or user" << endl;
+		cout << "Select 2 to delete an admin or user" << endl;
 		cout << "Select 3 to update admin or user information" << endl;
 		cout << "Select 4 to add new book information" << endl;
-		cout << "Select 5 to update a book information" << endl;
-		cout << "Select 6 to delete a book information" << endl;
+		cout << "Select 5 to delete a book information" << endl;
+		cout << "Select 6 to update a book information" << endl;
 		cout << "Select 7 to search and show books informations" << endl;
 		cin >> a;
 		if (a == 1) {
@@ -436,6 +441,230 @@ int main()
 			BI << pageNumber << endl;
 			cout << "Information submitted successfully!";
 			BI.close();
+		}
+		else if (a == 5) {
+			cout << "You want to delete a book information!" << endl;
+			fstream Book("Books.txt", ios::in | ios::out | ios::app);
+			cout << "Please enter the name of book you want to delete: ";
+			cin >> bookName;
+			cout << "Please enter the writer of book you want to delete: ";
+			cin >> writerName;
+			Book.seekg(0, ios::beg);
+			for (int i = 0; i < u; i++) {
+				Book >> sa;
+				B[i].setBookName(sa);
+				Book >> sb;
+				B[i].setBookWriter(sb);
+				Book >> sc;
+				B[i].setYear(sc);
+				Book >> sd;
+				B[i].setPageNum(sd);
+				if (B[i].getBookName() == bookName && B[i].getBookWriter() == writerName) {
+					l = i;
+					o = 1;
+				}
+			}
+			if (o == 0) {
+				cout << "The book you want to delete, was not found!" << endl;
+			}
+			else {
+				Book.close();
+				remove("Books.txt");
+				fstream Bookd("Books.txt", ios::in | ios::out | ios::app);
+				if (!Bookd)
+					cout << "Couldnot open file Books.txt" << endl;
+				int m = 0;
+				while (m < u) {
+					if (m != l) {
+						se = B[m].getBookName();
+						Bookd << se << endl;
+						sf = B[m].getBookWriter();
+						Bookd << sf << endl;
+						sg = B[m].getYear();
+						Bookd << sg << endl;
+						sh = B[m].getPageNum();
+						Bookd << sh << endl;
+					}
+					m++;
+				}
+				Bookd.close();
+				cout << "Information deleted successfully!" << endl;
+				ifstream ab("BookNumber.txt", ios::in);
+				if (!ab)
+					cout << "Couldnot open file BookNumber.txt" << endl;
+				ab >> u;
+				u--;
+				ab.close();
+				remove("BookNumber.txt");
+				ofstream AB("BookNumber.txt", ios::out);
+				if (!AB)
+					cout << "Couldnot open file BookNumber.txt" << endl;
+				AB << u;
+				AB.close();
+			}
+		}
+		else if (a == 6) {
+			cout << "You want to update a book information!" << endl;
+			fstream Book("Books.txt", ios::in | ios::out | ios::app);
+			cout << "Please enter the name of book you want to update: ";
+			cin >> bookName;
+			cout << "Please enter the writer of book you want to update: ";
+			cin >> writerName;
+			Book.seekg(0, ios::beg);
+			for (int i = 0; i < u; i++) {
+				Book >> sa;
+				B[i].setBookName(sa);
+				Book >> sb;
+				B[i].setBookWriter(sb);
+				Book >> sc;
+				B[i].setYear(sc);
+				Book >> sd;
+				B[i].setPageNum(sd);
+				if (B[i].getBookName() == bookName && B[i].getBookWriter() == writerName) {
+					q = i;
+					o = 1;
+				}
+			}
+			Book.close();
+			remove("Books.txt");
+			if (o == 0) {
+				cout << "The book you want to update was not found!" << endl;
+			}
+			else {
+				cout << "Select 1 to update BookName:( " << B[q].getBookName() << " )" << endl;
+				cout << "Select 2 to update WriterName:( " << B[q].getBookWriter() << " )" << endl;
+				cout << "Select 3 to update EditionYear:( " << B[q].getYear() << " )" << endl;
+				cout << "Select 4 to update NumberOfPages:( " << B[q].getPageNum() << " )" << endl;
+				cin >> s;
+				if (s == 1) {
+					cout << "You want to update BookName!" << endl;
+					cout << "Please enter new BookName: ";
+					cin >> newBookName;
+					fstream BU("Books.txt", ios::out | ios::app);
+					if (!BU)
+						cout << "Couldnot open file Books.txt";
+					int t = 0;
+					while (t < u) {
+						if (t != q) {
+							se = B[t].getBookName();
+							BU << se << endl;
+							sf = B[t].getBookWriter();
+							BU << sf << endl;
+							sg = B[t].getYear();
+							BU << sg << endl;
+							sh = B[t].getPageNum();
+							BU << sh << endl;
+						}
+						else if (t == q) {
+							BU << newBookName << endl;
+							sf = B[t].getBookWriter();
+							BU << sf << endl;
+							sg = B[t].getYear();
+							BU << sg << endl;
+							sh = B[t].getPageNum();
+							BU << sh << endl;
+						}
+						t++;
+					}
+					cout << "Information updated successfully!" << endl;
+				}
+				else if (s == 2) {
+					cout << "You want to update WriterName!" << endl;
+					cout << "Please enter new WriterName: ";
+					cin >> newWriterName;
+					fstream BU("Books.txt", ios::out | ios::app);
+					if (!BU)
+						cout << "Couldnot open file Books.txt";
+					int t = 0;
+					while (t < u) {
+						if (t != q) {
+							se = B[t].getBookName();
+							BU << se << endl;
+							sf = B[t].getBookWriter();
+							BU << sf << endl;
+							sg = B[t].getYear();
+							BU << sg << endl;
+							sh = B[t].getPageNum();
+							BU << sh << endl;
+						}
+						else if (t == q) {
+							sf = B[t].getBookName();
+							BU << sf << endl;
+							BU << newWriterName << endl;
+							sg = B[t].getYear();
+							BU << sg << endl;
+							sh = B[t].getPageNum();
+							BU << sh << endl;
+						}
+						t++;
+					}
+					cout << "Information updated successfully!" << endl;
+				}
+				else if (s == 3) {
+					cout << "You want to update EditionYear!" << endl;
+					cout << "Please enter new EditionYear: ";
+					cin >> newEditionYear;
+					fstream BU("Books.txt", ios::out | ios::app);
+					if (!BU)
+						cout << "Couldnot open file Books.txt";
+					int t = 0;
+					while (t < u) {
+						if (t != q) {
+							se = B[t].getBookName();
+							BU << se << endl;
+							sf = B[t].getBookWriter();
+							BU << sf << endl;
+							sg = B[t].getYear();
+							BU << sg << endl;
+							sh = B[t].getPageNum();
+							BU << sh << endl;
+						}
+						else if (t == q) {
+							sf = B[t].getBookName();
+							BU << sf << endl;
+							sg = B[t].getBookWriter();
+							BU << sg << endl;
+							BU << newEditionYear << endl;
+							sh = B[t].getPageNum();
+							BU << sh << endl;
+						}
+						t++;
+					}
+					cout << "Information updated successfully!" << endl;
+				}
+				else if (s == 4) {
+					cout << "You want to update NumberOfPages" << endl;
+					cout << "Please enter new NumberOfPages: ";
+					cin >> newPageNumber;
+					fstream BU("Books.txt", ios::out | ios::app);
+					if (!BU)
+						cout << "Couldnot open file Books.txt";
+					int t = 0;
+					while (t < u) {
+						if (t != q) {
+							se = B[t].getBookName();
+							BU << se << endl;
+							sf = B[t].getBookWriter();
+							BU << sf << endl;
+							sg = B[t].getYear();
+							BU << sg << endl;
+							sh = B[t].getPageNum();
+							BU << sh << endl;
+						}
+						else if (t == q) {
+							sf = B[t].getBookName();
+							BU << sf << endl;
+							sg = B[t].getBookWriter();
+							BU << sg << endl;
+							sh = B[t].getYear();
+							BU << sh << endl;
+							BU << newPageNumber << endl;
+						}
+						t++;
+					}
+					cout << "Information updated successfully!" << endl;
+				}
+			}
 		}
 	}
 	else if (k == 1 && g == 0) {
