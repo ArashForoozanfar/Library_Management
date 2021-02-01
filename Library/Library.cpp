@@ -73,11 +73,13 @@ int main()
 		cout << "Select 5 to delete a book information" << endl;
 		cout << "Select 6 to update a book information" << endl;
 		cout << "Select 7 to search and show books informations" << endl;
+		cout << "Enter a number: ";
 		cin >> a;
 		if (a == 1) {
 			cout << "You want to add new admin or user information" << endl;
 			cout << "Select 1 to add new admin" << endl;
 			cout << "Select 2 to add new user" << endl;
+			cout << "Enter a number: ";
 			cin >> b;
 			if (b == 1) {
 				ifstream Na("AdminNumber.txt", ios::in);
@@ -134,6 +136,7 @@ int main()
 			cout << "You want to delete an admin or user information!" << endl;
 			cout << "Select 1 to delete an admin" << endl;
 			cout << "Select 2 to delete a user" << endl;
+			cout << "Enter a number: ";
 			cin >> n;
 			if (n == 1) {
 				fstream Admin("Admins.txt", ios::in | ios::out | ios::app);
@@ -157,6 +160,7 @@ int main()
 				}
 				if (o == 0) {
 					cout << "The admin you want to delete, was not found!" << endl;
+					exit(0);
 				}
 				else {
 					Admin.close();
@@ -214,6 +218,7 @@ int main()
 				}
 				if (o == 0) {
 					cout << "The user you want to delete, was not found!" << endl;
+					exit(0);
 				}
 				else {
 					User.close();
@@ -254,6 +259,7 @@ int main()
 			cout << "You want to update an admin or user information!" << endl;
 			cout << "Select 1 to update an admin" << endl;
 			cout << "Select 2 to update a user" << endl;
+			cout << "Enter a number: ";
 			cin >> p;
 			if (p == 1) {
 				fstream Admin("Admins.txt", ios::in | ios::out | ios::app);
@@ -277,10 +283,12 @@ int main()
 				remove("Admins.txt");
 				if (r == 0) {
 					cout << "The admin you want to update was not found!" << endl;
+					exit(0);
 				}
 				else {
 					cout << "Select 1 to update username:( " << userName3 << " )" << endl;
 					cout << "Select 2 to update password:( " << password3 << " )" << endl;
+					cout << "Enter a number: ";
 					cin >> s;
 					if (s == 1) {
 						cout << "You want to update username!" << endl;
@@ -354,10 +362,12 @@ int main()
 				remove("Users.txt");
 				if (r == 0) {
 					cout << "The user you want to update was not found!" << endl;
+					exit(0);
 				}
 				else {
 					cout << "Select 1 to update username:( " << userName3 << " )" << endl;
 					cout << "Select 2 to update password:( " << password3 << " )" << endl;
+					cout << "Enter a number: ";
 					cin >> s;
 					if (s == 1) {
 						cout << "You want to update username!" << endl;
@@ -465,6 +475,7 @@ int main()
 			}
 			if (o == 0) {
 				cout << "The book you want to delete, was not found!" << endl;
+				exit(0);
 			}
 			else {
 				Book.close();
@@ -528,12 +539,14 @@ int main()
 			remove("Books.txt");
 			if (o == 0) {
 				cout << "The book you want to update was not found!" << endl;
+				exit(0);
 			}
 			else {
 				cout << "Select 1 to update BookName:( " << B[q].getBookName() << " )" << endl;
 				cout << "Select 2 to update WriterName:( " << B[q].getBookWriter() << " )" << endl;
 				cout << "Select 3 to update EditionYear:( " << B[q].getYear() << " )" << endl;
 				cout << "Select 4 to update NumberOfPages:( " << B[q].getPageNum() << " )" << endl;
+				cout << "Enter a number: ";
 				cin >> s;
 				if (s == 1) {
 					cout << "You want to update BookName!" << endl;
@@ -666,7 +679,58 @@ int main()
 			}
 		}
 		else if (a == 7) {
-			
+			cout << "You want to search and show a book informations!" << endl;
+			fstream Book("Books.txt", ios::in | ios::out | ios::app);
+			cout << "Please enter the name of book you want to find: ";
+			cin >> bookName;
+			cout << "Please enter the writer of book you want to find: ";
+			cin >> writerName;
+			Book.seekg(0, ios::beg);
+			for (int i = 0; i < u; i++) {
+				Book >> sa;
+				B[i].setBookName(sa);
+				Book >> sb;
+				B[i].setBookWriter(sb);
+				Book >> sc;
+				B[i].setYear(sc);
+				Book >> sd;
+				B[i].setPageNum(sd);
+				if (B[i].getBookName() == bookName && B[i].getBookWriter() == writerName) {
+					l = i;
+					o = 1;
+					cout << "The book found!" << endl;
+					cout << "BookName: " << B[i].getBookName() << endl;
+					cout << "WriterName: " << B[i].getBookWriter() << endl;
+					cout << "EditionYear: " << B[i].getYear() << endl;
+					cout << "NumberOfPages: " << B[i].getPageNum() << endl;
+				}
+			}
+			if (o == 0) {
+				cout << "The book you want to find, was not found!" << endl;
+				exit(0);
+			}
+			else {
+				Book.close();
+				fstream SB("SearchedBooks.txt", ios::in | ios::out | ios::app);
+				if (!SB)
+					cout << "Couldnot open file SearchedBooks.txt" << endl;
+				int m = 0;
+				while (m < u) {
+					if (m == l) {
+						se = B[m].getBookName();
+						SB << "BookName: " << se << endl;
+						sf = B[m].getBookWriter();
+						SB << "WriterName: " << sf << endl;
+						sg = B[m].getYear();
+						SB << "EditionYear: " << sg << endl;
+						sh = B[m].getPageNum();
+						SB << "NumberOfPages: " << sh << endl;
+					}
+					m++;
+				}
+				SB.close();
+				cout << "Information submitted successfully on SearchedBooks.txt file!" << endl;
+			}
 		}
 	}
 	else if (k == 1 && g == 0) {

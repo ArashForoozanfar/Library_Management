@@ -1,0 +1,4 @@
+BookName: JenayatvaMokafat
+WriterName: Dostoyevsky
+EditionYear: 1991
+NumberOfPages: 343
