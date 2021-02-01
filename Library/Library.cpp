@@ -11,7 +11,7 @@ using namespace std;
 int main()
 {
 	int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0, h = 0, k = 0, l = 0, n = 0, o = 0, p = 0, q = 0, r = 0, s = 0, u = 0;
-	Info I[A], J[A], D[A], U[A], L[A];
+	Info I[A], J[A], D[A], U[A];
 	Book B[A];
 	auto Time = chrono::system_clock::to_time_t(chrono::system_clock::now());
 	string userName, password, userName1, password1, userName2, password2, userName3, password3, newusername, newpassword, sa, sb, sc, sd, se, sf, sg, sh, si, sj;
@@ -48,7 +48,7 @@ int main()
 	cout << "Password: ";
 	cin >> password;
 	Log << password << endl;
-	Log << ctime(&Time) << endl;
+	Log << ctime(&Time);
 	for (int i = 0; i < f; i++) {
 		Admin >> sa;
 		I[i].setUsername(sa);
@@ -74,6 +74,8 @@ int main()
 	}
 	User.close();
 	if (g == 1) {
+		Log << "Successfull Login" << endl;
+		Log.close();
 		cout << "You entered successfully as an Adminstrator!" << endl;
 		cout << "Select 1 to add new admin or user" << endl;
 		cout << "Select 2 to delete an admin or user" << endl;
@@ -750,5 +752,7 @@ int main()
 	}
 	else {
 		cout << "Username or password is incorrect!, Please try again...";
+		Log << "Unsuccessfull Login" << endl;
+		Log.close();
 	}
 }
