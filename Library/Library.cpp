@@ -74,8 +74,7 @@ int main()
 	}
 	User.close();
 	if (g == 1) {
-		Log << "Successfull Login" << endl;
-		Log.close();
+		Log << "Successfull Login as Adminstrator" << endl;
 		cout << "You entered successfully as an Adminstrator!" << endl;
 		cout << "Select 1 to add new admin or user" << endl;
 		cout << "Select 2 to delete an admin or user" << endl;
@@ -114,6 +113,8 @@ int main()
 				IA << userName1 << endl;
 				IA << password1 << endl;
 				cout << "Information submitted successfully!";
+				Log << "Inserted a new admin" << endl;
+				Log.close();
 				IA.close();
 			}
 			else if (b == 2) {
@@ -138,6 +139,8 @@ int main()
 				UI << userName1 << endl;
 				UI << password1 << endl;
 				cout << "Information submitted successfully!";
+				Log << "Inserted a new user" << endl;
+				Log.close();
 				UI.close();
 			}
 		}
@@ -168,6 +171,8 @@ int main()
 				}
 				if (o == 0) {
 					cout << "The admin you want to delete, was not found!" << endl;
+					Log << "Searched an admin for delete but didnot found" << endl;
+					Log.close();
 					exit(0);
 				}
 				else {
@@ -188,6 +193,8 @@ int main()
 					}
 					Admind.close();
 					cout << "Information deleted successfully!" << endl;
+					Log << "Deleted an admin" << endl;
+					Log.close();
 					ifstream ab("AdminNumber.txt", ios::in);
 					if (!ab)
 						cerr << "Couldnot open file AdminNumber.txt" << endl;
@@ -223,6 +230,8 @@ int main()
 				}
 				if (o == 0) {
 					cout << "The user you want to delete, was not found!" << endl;
+					Log << "Searched a user for delete but didnot found" << endl;
+					Log.close();
 					exit(0);
 				}
 				else {
@@ -243,6 +252,8 @@ int main()
 					}
 					Userd.close();
 					cout << "Information deleted successfully!" << endl;
+					Log << "Deleted a user" << endl;
+					Log.close();
 					ifstream ab("UserNumber.txt", ios::in);
 					if (!ab)
 						cerr << "Couldnot open file UserNumber.txt" << endl;
@@ -288,6 +299,8 @@ int main()
 				remove("Admins.txt");
 				if (r == 0) {
 					cout << "The admin you want to update was not found!" << endl;
+					Log << "Searched an admin for update but didnot found" << endl;
+					Log.close();
 					exit(0);
 				}
 				else {
@@ -318,6 +331,8 @@ int main()
 							t++;
 						}
 						cout << "Information updated successfully!" << endl;
+						Log << "Updated username of an admin" << endl;
+						Log.close();
 					}
 					else if (s == 2) {
 						cout << "You want to update password!" << endl;
@@ -342,6 +357,8 @@ int main()
 							t++;
 						}
 						cout << "Information updated successfully!" << endl;
+						Log << "Updated password of an admin" << endl;
+						Log.close();
 					}
 				}
 			}
@@ -369,6 +386,7 @@ int main()
 				remove("Users.txt");
 				if (r == 0) {
 					cout << "The user you want to update was not found!" << endl;
+					Log << "Searched a user for update but didnot found" << endl;
 					exit(0);
 				}
 				else {
@@ -399,6 +417,8 @@ int main()
 							t++;
 						}
 						cout << "Information updated successfully!" << endl;
+						Log << "Updated username of a user" << endl;
+						Log.close();
 					}
 					else if (s == 2) {
 						cout << "You want to update password!" << endl;
@@ -423,6 +443,8 @@ int main()
 							t++;
 						}
 						cout << "Information updated successfully!" << endl;
+						Log << "Updated password of a user" << endl;
+						Log.close();
 					}
 				}
 			}
@@ -456,6 +478,8 @@ int main()
 			BI << editionYear << endl;
 			BI << pageNumber << endl;
 			cout << "Information submitted successfully!";
+			Log << "Inserted a book" << endl;
+			Log.close();
 			BI.close();
 		}
 		else if (a == 5) {
@@ -484,6 +508,8 @@ int main()
 			}
 			if (o == 0) {
 				cout << "The book you want to delete, was not found!" << endl;
+				Log << "Searched a book for delete but didnot found" << endl;
+				Log.close();
 				exit(0);
 			}
 			else {
@@ -508,6 +534,8 @@ int main()
 				}
 				Bookd.close();
 				cout << "Information deleted successfully!" << endl;
+				Log << "Deleted a book" << endl;
+				Log.close();
 				ifstream ab("BookNumber.txt", ios::in);
 				if (!ab)
 					cerr << "Couldnot open file BookNumber.txt" << endl;
@@ -550,6 +578,8 @@ int main()
 			remove("Books.txt");
 			if (o == 0) {
 				cout << "The book you want to update was not found!" << endl;
+				Log << "Searched a book for update but didnot found" << endl;
+				Log.close();
 				exit(0);
 			}
 			else {
@@ -590,6 +620,8 @@ int main()
 						t++;
 					}
 					cout << "Information updated successfully!" << endl;
+					Log << "Updated a bookname" << endl;
+					Log.close();
 				}
 				else if (s == 2) {
 					cout << "You want to update WriterName!" << endl;
@@ -622,6 +654,8 @@ int main()
 						t++;
 					}
 					cout << "Information updated successfully!" << endl;
+					Log << "Updated writer name" << endl;
+					Log.close();
 				}
 				else if (s == 3) {
 					cout << "You want to update EditionYear!" << endl;
@@ -654,6 +688,8 @@ int main()
 						t++;
 					}
 					cout << "Information updated successfully!" << endl;
+					Log << "Updated edition year" << endl;
+					Log.close();
 				}
 				else if (s == 4) {
 					cout << "You want to update NumberOfPages" << endl;
@@ -686,6 +722,8 @@ int main()
 						t++;
 					}
 					cout << "Information updated successfully!" << endl;
+					Log << "Updated number of pages" << endl;
+					Log.close();
 				}
 			}
 		}
@@ -720,6 +758,8 @@ int main()
 			}
 			if (o == 0) {
 				cout << "The book you want to find, was not found!" << endl;
+				Log << "Searched a book but didnot found" << endl;
+				Log.close();
 				exit(0);
 			}
 			else {
@@ -743,12 +783,72 @@ int main()
 				}
 				SB.close();
 				cout << "Information submitted successfully on SearchedBooks.txt file!" << endl;
+				Log << "Searched a book" << endl;
+				Log.close();
 			}
 		}
 	}
 	else if (k == 1 && g == 0) {
+		Log << "Successfully Login as a User" << endl;
 		cout << "You entered successfully as a user!" << endl;
-		cout << "Select 1 to search and show book information" << endl;
+		cout << "You want to search and show a book informations!" << endl;
+		fstream Book("Books.txt", ios::in | ios::out | ios::app);
+		if (!Book)
+			cerr << "Couldnot open file Books.txt" << endl;
+		cout << "Please enter the name of book you want to find: ";
+		cin >> bookName;
+		cout << "Please enter the writer of book you want to find: ";
+		cin >> writerName;
+		Book.seekg(0, ios::beg);
+		for (int i = 0; i < u; i++) {
+			Book >> sa;
+			B[i].setBookName(sa);
+			Book >> sb;
+			B[i].setBookWriter(sb);
+			Book >> sc;
+			B[i].setYear(sc);
+			Book >> sd;
+			B[i].setPageNum(sd);
+			if (B[i].getBookName() == bookName && B[i].getBookWriter() == writerName) {
+				l = i;
+				o = 1;
+				cout << "The book found!" << endl;
+				cout << "BookName: " << B[i].getBookName() << endl;
+				cout << "WriterName: " << B[i].getBookWriter() << endl;
+				cout << "EditionYear: " << B[i].getYear() << endl;
+				cout << "NumberOfPages: " << B[i].getPageNum() << endl;
+			}
+		}
+		if (o == 0) {
+			cout << "The book you want to find, was not found!" << endl;
+			Log << "Searched a book but didnot found" << endl;
+			Log.close();
+			exit(0);
+		}
+		else {
+			Book.close();
+			fstream SB("SearchedBooks.txt", ios::in | ios::out | ios::app);
+			if (!SB)
+				cerr << "Couldnot open file SearchedBooks.txt" << endl;
+			int m = 0;
+			while (m < u) {
+				if (m == l) {
+					se = B[m].getBookName();
+					SB << "BookName: " << se << endl;
+					sf = B[m].getBookWriter();
+					SB << "WriterName: " << sf << endl;
+					sg = B[m].getYear();
+					SB << "EditionYear: " << sg << endl;
+					sh = B[m].getPageNum();
+					SB << "NumberOfPages: " << sh << endl;
+				}
+				m++;
+			}
+			SB.close();
+			cout << "Information submitted successfully on SearchedBooks.txt file!" << endl;
+			Log << "Searched a book" << endl;
+			Log.close();
+		}
 	}
 	else {
 		cout << "Username or password is incorrect!, Please try again...";
