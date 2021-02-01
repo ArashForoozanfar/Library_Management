@@ -9,9 +9,11 @@ using namespace std;
 
 int main()
 {
-	int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0, h = 0, k = 0, l = 0, n = 0, o = 0, p = 0, q = 0, r = 0, s = 0;
+	int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0, h = 0, k = 0, l = 0, n = 0, o = 0, p = 0, q = 0, r = 0, s = 0, u = 0;
 	Info I[A], J[A], D[A], U[A];
+	Book B[A];
 	string userName, password, userName1, password1, userName2, password2, userName3, password3, newusername, newpassword, sa, sb, sc, sd, se, sf, sg, sh, si, sj;
+	string bookName, writerName, editionYear, pageNumber;
 	fstream Admin("Admins.txt", ios::in | ios::out | ios::app);
 	if (!Admin)
 		cout << "Couldnot open file Admins.txt" << endl;
@@ -23,14 +25,6 @@ int main()
 		cout << "Couldnot open file AdminNumber.txt" << endl;
 	ab >> f;
 	ab.close();
-	/*fstream ADname("Admins.txt", ios::in | ios::out | ios::app);
-	fstream USname("Users.txt", ios::in | ios::out | ios::app);
-	fstream ADnum("AdminNumber.txt", ios::in | ios::out | ios::app);
-	fstream USnum("Usernumber.txt", ios::in | ios::out | ios::app);
-	ADname.close();
-	ADnum.close();
-	USname.close();
-	USnum.close();*/
 	ifstream cd("UserNumber.txt", ios::in);
 	if (!cd)
 		cout << "Couldnot open file UserNumber.txt" << endl;
@@ -95,6 +89,8 @@ int main()
 				Ma.close();
 				//#include "InsertAdmin.txt"
 				fstream IA("Admins.txt", ios::out | ios::app);
+				if (!IA)
+					cout << "Couldnot open file Admins.txt" << endl;
 				cout << "Enter username:";
 				cin >> userName1;
 				cout << "Enter password:";
@@ -118,6 +114,8 @@ int main()
 				Mu.close();
 				//#include "InsertUser.txt"
 				fstream UI("Users.txt", ios::out | ios::app);
+				if (!UI)
+					cout << "Couldnot open file Users.txt" << endl;
 				cout << "Enter username:";
 				cin >> userName1;
 				cout << "Enter password:";
@@ -407,6 +405,37 @@ int main()
 					}
 				}
 			}
+		}
+		else if (a == 4) {
+			cout << "You want to add new book information" << endl;
+			ifstream qa("BookNumber.txt", ios::in);
+			if (!qa)
+				cout << "Couldnot open file BookNumber.txt" << endl;
+			qa >> c;
+			c++;
+			remove("BookNumber.txt");
+			ofstream wa("BookNumber.txt", ios::out);
+			if (!wa)
+				cout << "Couldnot open file BookNumber.txt" << endl;
+			wa << c;
+			wa.close();
+			fstream BI("Books.txt", ios::out | ios::app);
+			if (!BI)
+				cout << "Couldnot open file Books.txt";
+			cout << "Enter BookName: ";
+			cin >> bookName;
+			cout << "Enter WriterName: ";
+			cin >> writerName;
+			cout << "Enter EditionYear: ";
+			cin >> editionYear;
+			cout << "Enter NumberOfPages: ";
+			cin >> pageNumber;
+			BI << bookName << endl;
+			BI << writerName << endl;
+			BI << editionYear << endl;
+			BI << pageNumber << endl;
+			cout << "Information submitted successfully!";
+			BI.close();
 		}
 	}
 	else if (k == 1 && g == 0) {
