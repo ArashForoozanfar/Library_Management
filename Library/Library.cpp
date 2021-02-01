@@ -204,7 +204,7 @@ int main()
 					User >> sf;
 					D[i].setPassword(sf);
 					//cout << "D[" << i << "].getpassword()= " << D[i].getPassword() << endl;
-					if (D[i].getUsername() == userName2) {
+					if (D[i].getUsername() == userName2 && D[i].getPassword() == password2) {
 						l = i;
 						//cout << "L: " << l << endl;
 						o = 1;
