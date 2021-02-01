@@ -15,23 +15,23 @@ int main()
 	string bookName, writerName, editionYear, pageNumber, newBookName, newWriterName, newEditionYear, newPageNumber;
 	fstream Admin("Admins.txt", ios::in | ios::out | ios::app);
 	if (!Admin)
-		cout << "Couldnot open file Admins.txt" << endl;
+		cerr << "Couldnot open file Admins.txt" << endl;
 	fstream User("Users.txt", ios::in | ios::out | ios::app);
 	if (!User)
-		cout << "Couldnot open file Users.txt" << endl;
+		cerr << "Couldnot open file Users.txt" << endl;
 	ifstream ab("AdminNumber.txt", ios::in);
 	if (!ab)
-		cout << "Couldnot open file AdminNumber.txt" << endl;
+		cerr << "Couldnot open file AdminNumber.txt" << endl;
 	ab >> f;
 	ab.close();
 	ifstream cd("UserNumber.txt", ios::in);
 	if (!cd)
-		cout << "Couldnot open file UserNumber.txt" << endl;
+		cerr << "Couldnot open file UserNumber.txt" << endl;
 	cd >> h;
 	cd.close();
 	ifstream ef("BookNumber.txt", ios::in);
 	if (!ef)
-		cout << "Couldnot open file BookNumber.txt" << endl;
+		cerr << "Couldnot open file BookNumber.txt" << endl;
 	ef >> u;
 	ef.close();
 	cout << "Welcome to library management application!" << endl;
@@ -84,18 +84,18 @@ int main()
 			if (b == 1) {
 				ifstream Na("AdminNumber.txt", ios::in);
 				if (!Na)
-					cout << "Couldnot open file AdminNumber.txt" << endl;
+					cerr << "Couldnot open file AdminNumber.txt" << endl;
 				Na >> c;
 				c++;
 				remove("AdminNumber.txt");
 				ofstream Ma("AdminNumber.txt", ios::out);
 				if (!Ma)
-					cout << "Couldnot open file AdminNumber.txt" << endl;
+					cerr << "Couldnot open file AdminNumber.txt" << endl;
 				Ma << c;
 				Ma.close();
 				fstream IA("Admins.txt", ios::out | ios::app);
 				if (!IA)
-					cout << "Couldnot open file Admins.txt" << endl;
+					cerr << "Couldnot open file Admins.txt" << endl;
 				cout << "Enter username:";
 				cin >> userName1;
 				cout << "Enter password:";
@@ -108,18 +108,18 @@ int main()
 			else if (b == 2) {
 				ifstream Nu("UserNumber.txt", ios::in);
 				if (!Nu)
-					cout << "Couldnot open file UserNumber.txt" << endl;
+					cerr << "Couldnot open file UserNumber.txt" << endl;
 				Nu >> d;
 				d++;
 				remove("UserNumber.txt");
 				ofstream Mu("UserNumber.txt", ios::out);
 				if (!Mu)
-					cout << "Couldnot open file UserNumber.txt" << endl;
+					cerr << "Couldnot open file UserNumber.txt" << endl;
 				Mu << d;
 				Mu.close();
 				fstream UI("Users.txt", ios::out | ios::app);
 				if (!UI)
-					cout << "Couldnot open file Users.txt" << endl;
+					cerr << "Couldnot open file Users.txt" << endl;
 				cout << "Enter username:";
 				cin >> userName1;
 				cout << "Enter password:";
@@ -139,7 +139,7 @@ int main()
 			if (n == 1) {
 				fstream Admin("Admins.txt", ios::in | ios::out | ios::app);
 				if (!Admin)
-					cout << "Couldnot open file Admins.txt" << endl;
+					cerr << "Couldnot open file Admins.txt" << endl;
 				cout << "Please enter the username of admin you want to delete: ";
 				cin >> userName2;
 				cout << "Please enter the password of admin you want to delete: ";
@@ -164,7 +164,7 @@ int main()
 					remove("Admins.txt");
 					fstream Admind("Admins.txt", ios::in | ios::out | ios::app);
 					if (!Admind)
-						cout << "Couldnot open file Admins.txt" << endl;
+						cerr << "Couldnot open file Admins.txt" << endl;
 					int m = 0;
 					while (m < f) {
 						if (m != l) {
@@ -179,14 +179,14 @@ int main()
 					cout << "Information deleted successfully!" << endl;
 					ifstream ab("AdminNumber.txt", ios::in);
 					if (!ab)
-						cout << "Couldnot open file AdminNumber.txt" << endl;
+						cerr << "Couldnot open file AdminNumber.txt" << endl;
 					ab >> f;
 					f--;
 					ab.close();
 					remove("AdminNumber.txt");
 					ofstream AB("AdminNumber.txt", ios::out);
 					if (!AB)
-						cout << "Couldnot open file AdminNumber.txt" << endl;
+						cerr << "Couldnot open file AdminNumber.txt" << endl;
 					AB << f;
 					AB.close();
 				}
@@ -194,7 +194,7 @@ int main()
 			else if (n == 2) {
 				fstream User("Users.txt", ios::in | ios::out | ios::app);
 				if (!User)
-					cout << "Couldnot open file Users.txt" << endl;
+					cerr << "Couldnot open file Users.txt" << endl;
 				cout << "Please enter the username of user you want to delete: ";
 				cin >> userName2;
 				cout << "Please enter the password of user you want to delete: ";
@@ -219,7 +219,7 @@ int main()
 					remove("Users.txt");
 					fstream Userd("Users.txt", ios::in | ios::out | ios::app);
 					if (!Userd)
-						cout << "Couldnot open file Users.txt" << endl;
+						cerr << "Couldnot open file Users.txt" << endl;
 					int m = 0;
 					while (m < h) {
 						if (m != l) {
@@ -234,14 +234,14 @@ int main()
 					cout << "Information deleted successfully!" << endl;
 					ifstream ab("UserNumber.txt", ios::in);
 					if (!ab)
-						cout << "Couldnot open file UserNumber.txt" << endl;
+						cerr << "Couldnot open file UserNumber.txt" << endl;
 					ab >> f;
 					f--;
 					ab.close();
 					remove("UserNumber.txt");
 					ofstream AB("UserNumber.txt", ios::out);
 					if (!AB)
-						cout << "Couldnot open file UserNumber.txt" << endl;
+						cerr << "Couldnot open file UserNumber.txt" << endl;
 					AB << f;
 					AB.close();
 				}
@@ -256,7 +256,7 @@ int main()
 			if (p == 1) {
 				fstream Admin("Admins.txt", ios::in | ios::out | ios::app);
 				if (!Admin)
-					cout << "Couldnot open file Admins.txt" << endl;
+					cerr << "Couldnot open file Admins.txt" << endl;
 				cout << "You want to update an admin information!" << endl;
 				cout << "Please enter the username of admin you want to update: ";
 				cin >> userName3;
@@ -290,7 +290,7 @@ int main()
 						cin >> newusername;
 						fstream AU("Admins.txt", ios::out | ios::app);
 						if (!AU)
-							cout << "Couldnot open file Admins.txt" << endl;
+							cerr << "Couldnot open file Admins.txt" << endl;
 						int t = 0;
 						while (t < f) {
 							if (t != q) {
@@ -314,7 +314,7 @@ int main()
 						cin >> newpassword;
 						fstream AU("Admins.txt", ios::out | ios::app);
 						if (!AU)
-							cout << "Couldnot open file Admins.txt" << endl;
+							cerr << "Couldnot open file Admins.txt" << endl;
 						int t = 0;
 						while (t < f) {
 							if (t != q) {
@@ -337,7 +337,7 @@ int main()
 			else if (p == 2) {
 				fstream User("Users.txt", ios::in | ios::out | ios::app);
 				if (!User)
-					cout << "Couldnot open file Users.txt" << endl;
+					cerr << "Couldnot open file Users.txt" << endl;
 				cout << "You want to update a user information!" << endl;
 				cout << "Please enter the username of user you want to update: ";
 				cin >> userName3;
@@ -371,7 +371,7 @@ int main()
 						cin >> newusername;
 						fstream UU("Users.txt", ios::out | ios::app);
 						if (!UU)
-							cout << "Couldnot open file Users.txt" << endl;
+							cerr << "Couldnot open file Users.txt" << endl;
 						int t = 0;
 						while (t < h) {
 							if (t != q) {
@@ -395,7 +395,7 @@ int main()
 						cin >> newpassword;
 						fstream UU("Users.txt", ios::out | ios::app);
 						if (!UU)
-							cout << "Couldnot open file Users.txt" << endl;
+							cerr << "Couldnot open file Users.txt" << endl;
 						int t = 0;
 						while (t < h) {
 							if (t != q) {
@@ -420,18 +420,18 @@ int main()
 			cout << "You want to add new book information" << endl;
 			ifstream qa("BookNumber.txt", ios::in);
 			if (!qa)
-				cout << "Couldnot open file BookNumber.txt" << endl;
+				cerr << "Couldnot open file BookNumber.txt" << endl;
 			qa >> c;
 			c++;
 			remove("BookNumber.txt");
 			ofstream wa("BookNumber.txt", ios::out);
 			if (!wa)
-				cout << "Couldnot open file BookNumber.txt" << endl;
+				cerr << "Couldnot open file BookNumber.txt" << endl;
 			wa << c;
 			wa.close();
 			fstream BI("Books.txt", ios::out | ios::app);
 			if (!BI)
-				cout << "Couldnot open file Books.txt" << endl;
+				cerr << "Couldnot open file Books.txt" << endl;
 			cout << "Enter BookName: ";
 			cin >> bookName;
 			cout << "Enter WriterName: ";
@@ -451,7 +451,7 @@ int main()
 			cout << "You want to delete a book information!" << endl;
 			fstream Book("Books.txt", ios::in | ios::out | ios::app);
 			if (!Book)
-				cout << "Couldnot open file Books.txt" << endl;
+				cerr << "Couldnot open file Books.txt" << endl;
 			cout << "Please enter the name of book you want to delete: ";
 			cin >> bookName;
 			cout << "Please enter the writer of book you want to delete: ";
@@ -480,7 +480,7 @@ int main()
 				remove("Books.txt");
 				fstream Bookd("Books.txt", ios::in | ios::out | ios::app);
 				if (!Bookd)
-					cout << "Couldnot open file Books.txt" << endl;
+					cerr << "Couldnot open file Books.txt" << endl;
 				int m = 0;
 				while (m < u) {
 					if (m != l) {
@@ -499,14 +499,14 @@ int main()
 				cout << "Information deleted successfully!" << endl;
 				ifstream ab("BookNumber.txt", ios::in);
 				if (!ab)
-					cout << "Couldnot open file BookNumber.txt" << endl;
+					cerr << "Couldnot open file BookNumber.txt" << endl;
 				ab >> u;
 				u--;
 				ab.close();
 				remove("BookNumber.txt");
 				ofstream AB("BookNumber.txt", ios::out);
 				if (!AB)
-					cout << "Couldnot open file BookNumber.txt" << endl;
+					cerr << "Couldnot open file BookNumber.txt" << endl;
 				AB << u;
 				AB.close();
 			}
@@ -515,7 +515,7 @@ int main()
 			cout << "You want to update a book information!" << endl;
 			fstream Book("Books.txt", ios::in | ios::out | ios::app);
 			if (!Book)
-				cout << "Couldnot open file Books.txt" << endl;
+				cerr << "Couldnot open file Books.txt" << endl;
 			cout << "Please enter the name of book you want to update: ";
 			cin >> bookName;
 			cout << "Please enter the writer of book you want to update: ";
@@ -554,7 +554,7 @@ int main()
 					cin >> newBookName;
 					fstream BU("Books.txt", ios::out | ios::app);
 					if (!BU)
-						cout << "Couldnot open file Books.txt" << endl;
+						cerr << "Couldnot open file Books.txt" << endl;
 					int t = 0;
 					while (t < u) {
 						if (t != q) {
@@ -586,7 +586,7 @@ int main()
 					cin >> newWriterName;
 					fstream BU("Books.txt", ios::out | ios::app);
 					if (!BU)
-						cout << "Couldnot open file Books.txt" << endl;
+						cerr << "Couldnot open file Books.txt" << endl;
 					int t = 0;
 					while (t < u) {
 						if (t != q) {
@@ -618,7 +618,7 @@ int main()
 					cin >> newEditionYear;
 					fstream BU("Books.txt", ios::out | ios::app);
 					if (!BU)
-						cout << "Couldnot open file Books.txt" << endl;
+						cerr << "Couldnot open file Books.txt" << endl;
 					int t = 0;
 					while (t < u) {
 						if (t != q) {
@@ -650,7 +650,7 @@ int main()
 					cin >> newPageNumber;
 					fstream BU("Books.txt", ios::out | ios::app);
 					if (!BU)
-						cout << "Couldnot open file Books.txt" << endl;
+						cerr << "Couldnot open file Books.txt" << endl;
 					int t = 0;
 					while (t < u) {
 						if (t != q) {
@@ -682,7 +682,7 @@ int main()
 			cout << "You want to search and show a book informations!" << endl;
 			fstream Book("Books.txt", ios::in | ios::out | ios::app);
 			if (!Book)
-				cout << "Couldnot open file Books.txt" << endl;
+				cerr << "Couldnot open file Books.txt" << endl;
 			cout << "Please enter the name of book you want to find: ";
 			cin >> bookName;
 			cout << "Please enter the writer of book you want to find: ";
@@ -715,7 +715,7 @@ int main()
 				Book.close();
 				fstream SB("SearchedBooks.txt", ios::in | ios::out | ios::app);
 				if (!SB)
-					cout << "Couldnot open file SearchedBooks.txt" << endl;
+					cerr << "Couldnot open file SearchedBooks.txt" << endl;
 				int m = 0;
 				while (m < u) {
 					if (m == l) {
