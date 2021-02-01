@@ -2,6 +2,8 @@
 #include <string>
 #include <fstream>
 #include <algorithm>
+#include <ctime>
+#include <chrono>
 #include "classes.h"
 #define A 100
 using namespace std;
@@ -9,8 +11,9 @@ using namespace std;
 int main()
 {
 	int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0, h = 0, k = 0, l = 0, n = 0, o = 0, p = 0, q = 0, r = 0, s = 0, u = 0;
-	Info I[A], J[A], D[A], U[A];
+	Info I[A], J[A], D[A], U[A], L[A];
 	Book B[A];
+	auto Time = chrono::system_clock::to_time_t(chrono::system_clock::now());
 	string userName, password, userName1, password1, userName2, password2, userName3, password3, newusername, newpassword, sa, sb, sc, sd, se, sf, sg, sh, si, sj;
 	string bookName, writerName, editionYear, pageNumber, newBookName, newWriterName, newEditionYear, newPageNumber;
 	fstream Admin("Admins.txt", ios::in | ios::out | ios::app);
@@ -34,12 +37,18 @@ int main()
 		cerr << "Couldnot open file BookNumber.txt" << endl;
 	ef >> u;
 	ef.close();
+	fstream Log("Log.txt", ios::out | ios::app);
+	if (!Log)
+		cerr << "Couldnot open file Log.txt" << endl;
 	cout << "Welcome to library management application!" << endl;
 	cout << "Please enter username and password for login:" << endl;
 	cout << "Username: ";
 	cin >> userName;
+	Log << userName << endl;
 	cout << "Password: ";
 	cin >> password;
+	Log << password << endl;
+	Log << ctime(&Time) << endl;
 	for (int i = 0; i < f; i++) {
 		Admin >> sa;
 		I[i].setUsername(sa);
