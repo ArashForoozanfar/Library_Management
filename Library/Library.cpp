@@ -44,9 +44,9 @@ int main()
 	cout << "Please enter username and password for login:" << endl;
 	cout << "Username: ";
 	cin >> userName;
-	Log << userName << endl;
 	cout << "Password: ";
 	cin >> password;
+	Log << userName << endl;
 	Log << password << endl;
 	Log << ctime(&Time);
 	for (int i = 0; i < f; i++) {
@@ -92,17 +92,6 @@ int main()
 			cout << "Enter a number: ";
 			cin >> b;
 			if (b == 1) {
-				ifstream Na("AdminNumber.txt", ios::in);
-				if (!Na)
-					cerr << "Couldnot open file AdminNumber.txt" << endl;
-				Na >> c;
-				c++;
-				remove("AdminNumber.txt");
-				ofstream Ma("AdminNumber.txt", ios::out);
-				if (!Ma)
-					cerr << "Couldnot open file AdminNumber.txt" << endl;
-				Ma << c;
-				Ma.close();
 				fstream IA("Admins.txt", ios::out | ios::app);
 				if (!IA)
 					cerr << "Couldnot open file Admins.txt" << endl;
@@ -116,19 +105,19 @@ int main()
 				Log << "Inserted a new admin" << endl;
 				Log.close();
 				IA.close();
+				ifstream Na("AdminNumber.txt", ios::in);
+				if (!Na)
+					cerr << "Couldnot open file AdminNumber.txt" << endl;
+				Na >> c;
+				c++;
+				remove("AdminNumber.txt");
+				ofstream Ma("AdminNumber.txt", ios::out);
+				if (!Ma)
+					cerr << "Couldnot open file AdminNumber.txt" << endl;
+				Ma << c;
+				Ma.close();
 			}
 			else if (b == 2) {
-				ifstream Nu("UserNumber.txt", ios::in);
-				if (!Nu)
-					cerr << "Couldnot open file UserNumber.txt" << endl;
-				Nu >> d;
-				d++;
-				remove("UserNumber.txt");
-				ofstream Mu("UserNumber.txt", ios::out);
-				if (!Mu)
-					cerr << "Couldnot open file UserNumber.txt" << endl;
-				Mu << d;
-				Mu.close();
 				fstream UI("Users.txt", ios::out | ios::app);
 				if (!UI)
 					cerr << "Couldnot open file Users.txt" << endl;
@@ -142,6 +131,17 @@ int main()
 				Log << "Inserted a new user" << endl;
 				Log.close();
 				UI.close();
+				ifstream Nu("UserNumber.txt", ios::in);
+				if (!Nu)
+					cerr << "Couldnot open file UserNumber.txt" << endl;
+				Nu >> d;
+				d++;
+				remove("UserNumber.txt");
+				ofstream Mu("UserNumber.txt", ios::out);
+				if (!Mu)
+					cerr << "Couldnot open file UserNumber.txt" << endl;
+				Mu << d;
+				Mu.close();
 			}
 		}
 		else if (a == 2) {
