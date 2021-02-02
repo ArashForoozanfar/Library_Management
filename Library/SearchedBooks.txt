@@ -1,8 +1,0 @@
-BookName: MellateEshgh
-WriterName: Elif
-EditionYear: 2006
-NumberOfPages: 480
-BookName: MellateEshgh
-WriterName: Elif
-EditionYear: 2006
-NumberOfPages: 480

@@ -112,7 +112,7 @@ int main()
 				cin >> password1;
 				IA << userName1 << endl;
 				IA << password1 << endl;
-				cout << "Information submitted successfully!";
+				cout << "Information submitted successfully!" << endl;
 				Log << "Inserted a new admin" << endl;
 				Log.close();
 				IA.close();
@@ -138,7 +138,7 @@ int main()
 				cin >> password1;
 				UI << userName1 << endl;
 				UI << password1 << endl;
-				cout << "Information submitted successfully!";
+				cout << "Information submitted successfully!" << endl;
 				Log << "Inserted a new user" << endl;
 				Log.close();
 				UI.close();
@@ -451,17 +451,6 @@ int main()
 		}
 		else if (a == 4) {
 			cout << "You want to add new book information" << endl;
-			ifstream qa("BookNumber.txt", ios::in);
-			if (!qa)
-				cerr << "Couldnot open file BookNumber.txt" << endl;
-			qa >> c;
-			c++;
-			remove("BookNumber.txt");
-			ofstream wa("BookNumber.txt", ios::out);
-			if (!wa)
-				cerr << "Couldnot open file BookNumber.txt" << endl;
-			wa << c;
-			wa.close();
 			fstream BI("Books.txt", ios::out | ios::app);
 			if (!BI)
 				cerr << "Couldnot open file Books.txt" << endl;
@@ -481,6 +470,17 @@ int main()
 			Log << "Inserted a book" << endl;
 			Log.close();
 			BI.close();
+			ifstream qa("BookNumber.txt", ios::in);
+			if (!qa)
+				cerr << "Couldnot open file BookNumber.txt" << endl;
+			qa >> c;
+			c++;
+			remove("BookNumber.txt");
+			ofstream wa("BookNumber.txt", ios::out);
+			if (!wa)
+				cerr << "Couldnot open file BookNumber.txt" << endl;
+			wa << c;
+			wa.close();
 		}
 		else if (a == 5) {
 			cout << "You want to delete a book information!" << endl;
