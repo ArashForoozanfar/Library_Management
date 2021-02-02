@@ -14,7 +14,7 @@ int main()
 	Info I[A], J[A], D[A], U[A];
 	Book B[A];
 	auto Time = chrono::system_clock::to_time_t(chrono::system_clock::now());
-	string userName, password, userName1, password1, userName2, password2, userName3, password3, newusername, newpassword, sa, sb, sc, sd, se, sf, sg, sh, si, sj;
+	string userName, password, userName1, password1, userName2, password2, userName3, password3, newusername, newpassword, sa, sb, sc, sd, se, sf, sg, sh, si, sj, sk, sl, sm, sn;
 	string bookName, writerName, editionYear, pageNumber, newBookName, newWriterName, newEditionYear, newPageNumber;
 	fstream Admin("Admins.txt", ios::in | ios::out | ios::app);
 	if (!Admin)
@@ -296,7 +296,6 @@ int main()
 					} 
 				}
 				Admin.close();
-				remove("Admins.txt");
 				if (r == 0) {
 					cout << "The admin you want to update was not found!" << endl;
 					Log << "Searched an admin for update but didnot found" << endl;
@@ -304,6 +303,7 @@ int main()
 					exit(0);
 				}
 				else {
+					remove("Admins.txt");
 					cout << "Select 1 to update username:( " << userName3 << " )" << endl;
 					cout << "Select 2 to update password:( " << password3 << " )" << endl;
 					cout << "Enter a number: ";
@@ -383,13 +383,13 @@ int main()
 					}
 				}
 				User.close();
-				remove("Users.txt");
 				if (r == 0) {
 					cout << "The user you want to update was not found!" << endl;
 					Log << "Searched a user for update but didnot found" << endl;
 					exit(0);
 				}
 				else {
+					remove("Users.txt");
 					cout << "Select 1 to update username:( " << userName3 << " )" << endl;
 					cout << "Select 2 to update password:( " << password3 << " )" << endl;
 					cout << "Enter a number: ";
@@ -575,7 +575,6 @@ int main()
 				}
 			}
 			Book.close();
-			remove("Books.txt");
 			if (o == 0) {
 				cout << "The book you want to update was not found!" << endl;
 				Log << "Searched a book for update but didnot found" << endl;
@@ -583,6 +582,7 @@ int main()
 				exit(0);
 			}
 			else {
+				remove("Books.txt");
 				cout << "Select 1 to update BookName:( " << B[q].getBookName() << " )" << endl;
 				cout << "Select 2 to update WriterName:( " << B[q].getBookWriter() << " )" << endl;
 				cout << "Select 3 to update EditionYear:( " << B[q].getYear() << " )" << endl;
@@ -610,12 +610,12 @@ int main()
 						}
 						else if (t == q) {
 							BU << newBookName << endl;
-							sf = B[t].getBookWriter();
-							BU << sf << endl;
-							sg = B[t].getYear();
-							BU << sg << endl;
-							sh = B[t].getPageNum();
-							BU << sh << endl;
+							si = B[t].getBookWriter();
+							BU << si << endl;
+							sj = B[t].getYear();
+							BU << sj << endl;
+							sk = B[t].getPageNum();
+							BU << sk << endl;
 						}
 						t++;
 					}
@@ -643,13 +643,13 @@ int main()
 							BU << sh << endl;
 						}
 						else if (t == q) {
-							sf = B[t].getBookName();
-							BU << sf << endl;
+							si = B[t].getBookName();
+							BU << si << endl;
 							BU << newWriterName << endl;
-							sg = B[t].getYear();
-							BU << sg << endl;
-							sh = B[t].getPageNum();
-							BU << sh << endl;
+							sj = B[t].getYear();
+							BU << sj << endl;
+							sk = B[t].getPageNum();
+							BU << sk << endl;
 						}
 						t++;
 					}
@@ -677,13 +677,13 @@ int main()
 							BU << sh << endl;
 						}
 						else if (t == q) {
-							sf = B[t].getBookName();
-							BU << sf << endl;
-							sg = B[t].getBookWriter();
-							BU << sg << endl;
+							si = B[t].getBookName();
+							BU << si << endl;
+							sj = B[t].getBookWriter();
+							BU << sj << endl;
 							BU << newEditionYear << endl;
-							sh = B[t].getPageNum();
-							BU << sh << endl;
+							sk = B[t].getPageNum();
+							BU << sk << endl;
 						}
 						t++;
 					}
@@ -711,12 +711,12 @@ int main()
 							BU << sh << endl;
 						}
 						else if (t == q) {
-							sf = B[t].getBookName();
-							BU << sf << endl;
-							sg = B[t].getBookWriter();
-							BU << sg << endl;
-							sh = B[t].getYear();
-							BU << sh << endl;
+							si = B[t].getBookName();
+							BU << si << endl;
+							sj = B[t].getBookWriter();
+							BU << sj << endl;
+							sk = B[t].getYear();
+							BU << sk << endl;
 							BU << newPageNumber << endl;
 						}
 						t++;
