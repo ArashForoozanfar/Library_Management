@@ -3,17 +3,19 @@
 #include <fstream>
 #include <algorithm>
 #include <ctime>
-#include <chrono>
 #include "classes.h"
 #define A 100
 using namespace std;
 
 int main()
 {
-	int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0, h = 0, k = 0, l = 0, n = 0, o = 0, p = 0, q = 0, r = 0, s = 0, u = 0;
+	int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0, h = 0, k = 0, l = 0, n = 0, o = 0, p = 0, q = 0, r = 0, s = 0, u = 0, z = 0;
 	Info I[A], J[A], D[A], U[A];
 	Book B[A];
-	auto Time = chrono::system_clock::to_time_t(chrono::system_clock::now());
+	time_t t;
+	struct tm* timeinfo;
+	time(&t);
+	timeinfo = localtime(&t);
 	string userName, password, userName1, password1, userName2, password2, userName3, password3, newusername, newpassword, sa, sb, sc, sd, se, sf, sg, sh, si, sj, sk, sl, sm, sn;
 	string bookName, writerName, editionYear, pageNumber, newBookName, newWriterName, newEditionYear, newPageNumber;
 	fstream Admin("Admins.txt", ios::in | ios::out | ios::app);
@@ -48,7 +50,7 @@ int main()
 	cin >> password;
 	Log << userName << endl;
 	Log << password << endl;
-	Log << ctime(&Time);
+	Log << asctime(timeinfo);
 	for (int i = 0; i < f; i++) {
 		Admin >> sa;
 		I[i].setUsername(sa);
@@ -92,24 +94,29 @@ int main()
 			cout << "Enter a number: ";
 			cin >> b;
 			if (b == 1) {
+				cout << "How many admin do you want to add: ";
+				cin >> z;
+				cout << "So you want to add " << z << " new admin" << endl;
 				fstream IA("Admins.txt", ios::out | ios::app);
 				if (!IA)
 					cerr << "Couldnot open file Admins.txt" << endl;
-				cout << "Enter username:";
-				cin >> userName1;
-				cout << "Enter password:";
-				cin >> password1;
-				IA << userName1 << endl;
-				IA << password1 << endl;
-				cout << "Information submitted successfully!" << endl;
-				Log << "Inserted a new admin" << endl;
+				for (int i = 0; i < z; i++) {
+					cout << "Enter username:";
+					cin >> userName1;
+					cout << "Enter password:";
+					cin >> password1;
+					IA << userName1 << endl;
+					IA << password1 << endl;
+					cout << "Information submitted successfully!" << endl;
+				}
+				Log << "Inserted " << z << " new admin" << endl;
 				Log.close();
 				IA.close();
 				ifstream Na("AdminNumber.txt", ios::in);
 				if (!Na)
 					cerr << "Couldnot open file AdminNumber.txt" << endl;
 				Na >> c;
-				c++;
+				c += z;
 				remove("AdminNumber.txt");
 				ofstream Ma("AdminNumber.txt", ios::out);
 				if (!Ma)
@@ -118,24 +125,29 @@ int main()
 				Ma.close();
 			}
 			else if (b == 2) {
+				cout << "How many user do you want to add: ";
+				cin >> z;
+				cout << "So you want to add " << z << " new user" << endl;
 				fstream UI("Users.txt", ios::out | ios::app);
 				if (!UI)
 					cerr << "Couldnot open file Users.txt" << endl;
-				cout << "Enter username:";
-				cin >> userName1;
-				cout << "Enter password:";
-				cin >> password1;
-				UI << userName1 << endl;
-				UI << password1 << endl;
-				cout << "Information submitted successfully!" << endl;
-				Log << "Inserted a new user" << endl;
+				for (int i = 0; i < z; i++) {
+					cout << "Enter username:";
+					cin >> userName1;
+					cout << "Enter password:";
+					cin >> password1;
+					UI << userName1 << endl;
+					UI << password1 << endl;
+					cout << "Information submitted successfully!" << endl;
+				}
+				Log << "Inserted " << z << " new user" << endl;
 				Log.close();
 				UI.close();
 				ifstream Nu("UserNumber.txt", ios::in);
 				if (!Nu)
 					cerr << "Couldnot open file UserNumber.txt" << endl;
 				Nu >> d;
-				d++;
+				d += z;
 				remove("UserNumber.txt");
 				ofstream Mu("UserNumber.txt", ios::out);
 				if (!Mu)
@@ -451,30 +463,35 @@ int main()
 		}
 		else if (a == 4) {
 			cout << "You want to add new book information" << endl;
+			cout << "How many book do you want to add: ";
+			cin >> z;
+			cout << "So you want to add " << z << " new book" << endl;
 			fstream BI("Books.txt", ios::out | ios::app);
 			if (!BI)
 				cerr << "Couldnot open file Books.txt" << endl;
-			cout << "Enter BookName: ";
-			cin >> bookName;
-			cout << "Enter WriterName: ";
-			cin >> writerName;
-			cout << "Enter EditionYear: ";
-			cin >> editionYear;
-			cout << "Enter NumberOfPages: ";
-			cin >> pageNumber;
-			BI << bookName << endl;
-			BI << writerName << endl;
-			BI << editionYear << endl;
-			BI << pageNumber << endl;
-			cout << "Information submitted successfully!";
-			Log << "Inserted a book" << endl;
+			for (int i = 0; i < z; i++) {
+				cout << "Enter BookName: ";
+				cin >> bookName;
+				cout << "Enter WriterName: ";
+				cin >> writerName;
+				cout << "Enter EditionYear: ";
+				cin >> editionYear;
+				cout << "Enter NumberOfPages: ";
+				cin >> pageNumber;
+				BI << bookName << endl;
+				BI << writerName << endl;
+				BI << editionYear << endl;
+				BI << pageNumber << endl;
+				cout << "Information submitted successfully!" << endl;
+			}
+			Log << "Inserted " << z << " book" << endl;
 			Log.close();
 			BI.close();
 			ifstream qa("BookNumber.txt", ios::in);
 			if (!qa)
 				cerr << "Couldnot open file BookNumber.txt" << endl;
 			qa >> c;
-			c++;
+			c += z;
 			remove("BookNumber.txt");
 			ofstream wa("BookNumber.txt", ios::out);
 			if (!wa)
