@@ -9,7 +9,7 @@ using namespace std;
 
 int main()
 {
-	int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0, h = 0, k = 0, l = 0, n = 0, o = 0, p = 0, q = 0, r = 0, s = 0, u = 0, z = 0;
+	int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0, h = 0, k = 0, l = 0, n = 0, o = 0, p = 0, q = 0, r = 0, s = 0, u = 0, v = 0, z = 0;
 	Info I[A], J[A], D[A], U[A];
 	Book B[A];
 	time_t t;
@@ -305,7 +305,7 @@ int main()
 					if (U[i].getUsername() == userName3 && U[i].getPassword() == password3) {
 						q = i;
 						r = 1;
-					} 
+					}
 				}
 				Admin.close();
 				if (r == 0) {
@@ -749,124 +749,380 @@ int main()
 			fstream Book("Books.txt", ios::in | ios::out | ios::app);
 			if (!Book)
 				cerr << "Couldnot open file Books.txt" << endl;
-			cout << "Please enter the name of book you want to find: ";
-			cin >> bookName;
-			cout << "Please enter the writer of book you want to find: ";
-			cin >> writerName;
-			Book.seekg(0, ios::beg);
-			for (int i = 0; i < u; i++) {
-				Book >> sa;
-				B[i].setBookName(sa);
-				Book >> sb;
-				B[i].setBookWriter(sb);
-				Book >> sc;
-				B[i].setYear(sc);
-				Book >> sd;
-				B[i].setPageNum(sd);
-				if (B[i].getBookName() == bookName && B[i].getBookWriter() == writerName) {
-					l = i;
-					o = 1;
-					cout << "The book found!" << endl;
-					cout << "BookName: " << B[i].getBookName() << endl;
-					cout << "WriterName: " << B[i].getBookWriter() << endl;
-					cout << "EditionYear: " << B[i].getYear() << endl;
-					cout << "NumberOfPages: " << B[i].getPageNum() << endl;
-				}
-			}
-			if (o == 0) {
-				cout << "The book you want to find, was not found!" << endl;
-				Log << "Searched a book but didnot found" << endl;
-				Log.close();
-				exit(0);
-			}
-			else {
-				Book.close();
-				fstream SB("SearchedBooks.txt", ios::in | ios::out | ios::app);
-				if (!SB)
-					cerr << "Couldnot open file SearchedBooks.txt" << endl;
-				int m = 0;
-				while (m < u) {
-					if (m == l) {
-						se = B[m].getBookName();
+			cout << "Select 1 to search books by BookName" << endl;
+			cout << "Select 2 to search books by WriterName" << endl;
+			cout << "Select 3 to search books by EditionYear" << endl;
+			cout << "Select 4 to search books by NumberOfPages" << endl;
+			cout << "Enter a number: ";
+			cin >> v;
+			if (v == 1) {
+				cout << "Please enter the name of book you want to find: ";
+				cin >> bookName;
+				Book.seekg(0, ios::beg);
+				for (int i = 0; i < u; i++) {
+					Book >> sa;
+					B[i].setBookName(sa);
+					Book >> sb;
+					B[i].setBookWriter(sb);
+					Book >> sc;
+					B[i].setYear(sc);
+					Book >> sd;
+					B[i].setPageNum(sd);
+					if (B[i].getBookName() == bookName) {
+						o = 1;
+						cout << "The book found!" << endl;
+						cout << "BookName: " << B[i].getBookName() << endl;
+						cout << "WriterName: " << B[i].getBookWriter() << endl;
+						cout << "EditionYear: " << B[i].getYear() << endl;
+						cout << "NumberOfPages: " << B[i].getPageNum() << endl;
+						fstream SB("SearchedBooks.txt", ios::in | ios::out | ios::app);
+						if (!SB)
+							cerr << "Couldnot open file SearchedBooks.txt" << endl;
+						se = B[i].getBookName();
 						SB << "BookName: " << se << endl;
-						sf = B[m].getBookWriter();
+						sf = B[i].getBookWriter();
 						SB << "WriterName: " << sf << endl;
-						sg = B[m].getYear();
+						sg = B[i].getYear();
 						SB << "EditionYear: " << sg << endl;
-						sh = B[m].getPageNum();
+						sh = B[i].getPageNum();
 						SB << "NumberOfPages: " << sh << endl;
+						SB.close();
+						cout << "Information submitted successfully on SearchedBooks.txt file!" << endl;
+						Log << "Searched a book" << endl;
 					}
-					m++;
 				}
-				SB.close();
-				cout << "Information submitted successfully on SearchedBooks.txt file!" << endl;
-				Log << "Searched a book" << endl;
+				if (o == 0) {
+					cout << "The book you want to find, was not found!" << endl;
+					Log << "Searched a book but didnot found" << endl;
+					Log.close();
+					exit(0);
+				}
+				Log.close();
+			}
+			if (v == 2) {
+				cout << "Please enter the writer of book you want to find: ";
+				cin >> writerName;
+				Book.seekg(0, ios::beg);
+				for (int i = 0; i < u; i++) {
+					Book >> sa;
+					B[i].setBookName(sa);
+					Book >> sb;
+					B[i].setBookWriter(sb);
+					Book >> sc;
+					B[i].setYear(sc);
+					Book >> sd;
+					B[i].setPageNum(sd);
+					if (B[i].getBookWriter() == writerName) {
+						o = 1;
+						cout << "The book found!" << endl;
+						cout << "BookName: " << B[i].getBookName() << endl;
+						cout << "WriterName: " << B[i].getBookWriter() << endl;
+						cout << "EditionYear: " << B[i].getYear() << endl;
+						cout << "NumberOfPages: " << B[i].getPageNum() << endl;
+						fstream SB("SearchedBooks.txt", ios::in | ios::out | ios::app);
+						if (!SB)
+							cerr << "Couldnot open file SearchedBooks.txt" << endl;
+						se = B[i].getBookName();
+						SB << "BookName: " << se << endl;
+						sf = B[i].getBookWriter();
+						SB << "WriterName: " << sf << endl;
+						sg = B[i].getYear();
+						SB << "EditionYear: " << sg << endl;
+						sh = B[i].getPageNum();
+						SB << "NumberOfPages: " << sh << endl;
+						SB.close();
+						cout << "Information submitted successfully on SearchedBooks.txt file!" << endl;
+						Log << "Searched a book" << endl;
+					}
+				}
+				if (o == 0) {
+					cout << "The book you want to find, was not found!" << endl;
+					Log << "Searched a book but didnot found" << endl;
+					Log.close();
+					exit(0);
+				}
+				Log.close();
+			}
+			if (v == 3) {
+				cout << "Please enter the edition year of book you want to find: ";
+				cin >> editionYear;
+				Book.seekg(0, ios::beg);
+				for (int i = 0; i < u; i++) {
+					Book >> sa;
+					B[i].setBookName(sa);
+					Book >> sb;
+					B[i].setBookWriter(sb);
+					Book >> sc;
+					B[i].setYear(sc);
+					Book >> sd;
+					B[i].setPageNum(sd);
+					if (B[i].getYear() == editionYear) {
+						o = 1;
+						cout << "The book found!" << endl;
+						cout << "BookName: " << B[i].getBookName() << endl;
+						cout << "WriterName: " << B[i].getBookWriter() << endl;
+						cout << "EditionYear: " << B[i].getYear() << endl;
+						cout << "NumberOfPages: " << B[i].getPageNum() << endl;
+						fstream SB("SearchedBooks.txt", ios::in | ios::out | ios::app);
+						if (!SB)
+							cerr << "Couldnot open file SearchedBooks.txt" << endl;
+						se = B[i].getBookName();
+						SB << "BookName: " << se << endl;
+						sf = B[i].getBookWriter();
+						SB << "WriterName: " << sf << endl;
+						sg = B[i].getYear();
+						SB << "EditionYear: " << sg << endl;
+						sh = B[i].getPageNum();
+						SB << "NumberOfPages: " << sh << endl;
+						SB.close();
+						cout << "Information submitted successfully on SearchedBooks.txt file!" << endl;
+						Log << "Searched a book" << endl;
+					}
+				}
+				if (o == 0) {
+					cout << "The book you want to find, was not found!" << endl;
+					Log << "Searched a book but didnot found" << endl;
+					Log.close();
+					exit(0);
+				}
+				Log.close();
+			}
+			if (v == 4) {
+				cout << "Please enter the number of pages of book you want to find: ";
+				cin >> pageNumber;
+				Book.seekg(0, ios::beg);
+				for (int i = 0; i < u; i++) {
+					Book >> sa;
+					B[i].setBookName(sa);
+					Book >> sb;
+					B[i].setBookWriter(sb);
+					Book >> sc;
+					B[i].setYear(sc);
+					Book >> sd;
+					B[i].setPageNum(sd);
+					if (B[i].getPageNum() == pageNumber) {
+						o = 1;
+						cout << "The book found!" << endl;
+						cout << "BookName: " << B[i].getBookName() << endl;
+						cout << "WriterName: " << B[i].getBookWriter() << endl;
+						cout << "EditionYear: " << B[i].getYear() << endl;
+						cout << "NumberOfPages: " << B[i].getPageNum() << endl;
+						fstream SB("SearchedBooks.txt", ios::in | ios::out | ios::app);
+						if (!SB)
+							cerr << "Couldnot open file SearchedBooks.txt" << endl;
+						se = B[i].getBookName();
+						SB << "BookName: " << se << endl;
+						sf = B[i].getBookWriter();
+						SB << "WriterName: " << sf << endl;
+						sg = B[i].getYear();
+						SB << "EditionYear: " << sg << endl;
+						sh = B[i].getPageNum();
+						SB << "NumberOfPages: " << sh << endl;
+						SB.close();
+						cout << "Information submitted successfully on SearchedBooks.txt file!" << endl;
+						Log << "Searched a book" << endl;
+					}
+				}
+				if (o == 0) {
+					cout << "The book you want to find, was not found!" << endl;
+					Log << "Searched a book but didnot found" << endl;
+					Log.close();
+					exit(0);
+				}
 				Log.close();
 			}
 		}
 	}
-	else if (k == 1 && g == 0) {
-		Log << "Successfull Login as a User" << endl;
-		cout << "You entered successfully as a user!" << endl;
-		cout << "You want to search and show a book informations!" << endl;
-		fstream Book("Books.txt", ios::in | ios::out | ios::app);
-		if (!Book)
-			cerr << "Couldnot open file Books.txt" << endl;
-		cout << "Please enter the name of book you want to find: ";
-		cin >> bookName;
-		cout << "Please enter the writer of book you want to find: ";
-		cin >> writerName;
-		Book.seekg(0, ios::beg);
-		for (int i = 0; i < u; i++) {
-			Book >> sa;
-			B[i].setBookName(sa);
-			Book >> sb;
-			B[i].setBookWriter(sb);
-			Book >> sc;
-			B[i].setYear(sc);
-			Book >> sd;
-			B[i].setPageNum(sd);
-			if (B[i].getBookName() == bookName && B[i].getBookWriter() == writerName) {
-				l = i;
-				o = 1;
-				cout << "The book found!" << endl;
-				cout << "BookName: " << B[i].getBookName() << endl;
-				cout << "WriterName: " << B[i].getBookWriter() << endl;
-				cout << "EditionYear: " << B[i].getYear() << endl;
-				cout << "NumberOfPages: " << B[i].getPageNum() << endl;
-			}
-		}
-		if (o == 0) {
-			cout << "The book you want to find, was not found!" << endl;
-			Log << "Searched a book but didnot found" << endl;
-			Log.close();
-			exit(0);
-		}
-		else {
-			Book.close();
-			fstream SB("SearchedBooks.txt", ios::in | ios::out | ios::app);
-			if (!SB)
-				cerr << "Couldnot open file SearchedBooks.txt" << endl;
-			int m = 0;
-			while (m < u) {
-				if (m == l) {
-					se = B[m].getBookName();
-					SB << "BookName: " << se << endl;
-					sf = B[m].getBookWriter();
-					SB << "WriterName: " << sf << endl;
-					sg = B[m].getYear();
-					SB << "EditionYear: " << sg << endl;
-					sh = B[m].getPageNum();
-					SB << "NumberOfPages: " << sh << endl;
+		else if (k == 1 && g == 0) {
+			Log << "Successfull Login as a User" << endl;
+			cout << "You entered successfully as a user!" << endl;
+			cout << "You want to search and show a book informations!" << endl;
+			fstream Book("Books.txt", ios::in | ios::out | ios::app);
+			if (!Book)
+				cerr << "Couldnot open file Books.txt" << endl;
+			cout << "Select 1 to search books by BookName" << endl;
+			cout << "Select 2 to search books by WriterName" << endl;
+			cout << "Select 3 to search books by EditionYear" << endl;
+			cout << "Select 4 to search books by NumberOfPages" << endl;
+			cout << "Enter a number: ";
+			cin >> v;
+			if (v == 1) {
+				cout << "Please enter the name of book you want to find: ";
+				cin >> bookName;
+				Book.seekg(0, ios::beg);
+				for (int i = 0; i < u; i++) {
+					Book >> sa;
+					B[i].setBookName(sa);
+					Book >> sb;
+					B[i].setBookWriter(sb);
+					Book >> sc;
+					B[i].setYear(sc);
+					Book >> sd;
+					B[i].setPageNum(sd);
+					if (B[i].getBookName() == bookName) {
+						o = 1;
+						cout << "The book found!" << endl;
+						cout << "BookName: " << B[i].getBookName() << endl;
+						cout << "WriterName: " << B[i].getBookWriter() << endl;
+						cout << "EditionYear: " << B[i].getYear() << endl;
+						cout << "NumberOfPages: " << B[i].getPageNum() << endl;
+						fstream SB("SearchedBooks.txt", ios::in | ios::out | ios::app);
+						if (!SB)
+							cerr << "Couldnot open file SearchedBooks.txt" << endl;
+						se = B[i].getBookName();
+						SB << "BookName: " << se << endl;
+						sf = B[i].getBookWriter();
+						SB << "WriterName: " << sf << endl;
+						sg = B[i].getYear();
+						SB << "EditionYear: " << sg << endl;
+						sh = B[i].getPageNum();
+						SB << "NumberOfPages: " << sh << endl;
+						SB.close();
+						cout << "Information submitted successfully on SearchedBooks.txt file!" << endl;
+						Log << "Searched a book" << endl;
+					}
 				}
-				m++;
+				if (o == 0) {
+					cout << "The book you want to find, was not found!" << endl;
+					Log << "Searched a book but didnot found" << endl;
+					Log.close();
+					exit(0);
+				}
+				Log.close();
 			}
-			SB.close();
-			cout << "Information submitted successfully on SearchedBooks.txt file!" << endl;
-			Log << "Searched a book" << endl;
-			Log.close();
+			if (v == 2) {
+				cout << "Please enter the writer of book you want to find: ";
+				cin >> writerName;
+				Book.seekg(0, ios::beg);
+				for (int i = 0; i < u; i++) {
+					Book >> sa;
+					B[i].setBookName(sa);
+					Book >> sb;
+					B[i].setBookWriter(sb);
+					Book >> sc;
+					B[i].setYear(sc);
+					Book >> sd;
+					B[i].setPageNum(sd);
+					if (B[i].getBookWriter() == writerName) {
+						o = 1;
+						cout << "The book found!" << endl;
+						cout << "BookName: " << B[i].getBookName() << endl;
+						cout << "WriterName: " << B[i].getBookWriter() << endl;
+						cout << "EditionYear: " << B[i].getYear() << endl;
+						cout << "NumberOfPages: " << B[i].getPageNum() << endl;
+						fstream SB("SearchedBooks.txt", ios::in | ios::out | ios::app);
+						if (!SB)
+							cerr << "Couldnot open file SearchedBooks.txt" << endl;
+						se = B[i].getBookName();
+						SB << "BookName: " << se << endl;
+						sf = B[i].getBookWriter();
+						SB << "WriterName: " << sf << endl;
+						sg = B[i].getYear();
+						SB << "EditionYear: " << sg << endl;
+						sh = B[i].getPageNum();
+						SB << "NumberOfPages: " << sh << endl;
+						SB.close();
+						cout << "Information submitted successfully on SearchedBooks.txt file!" << endl;
+						Log << "Searched a book" << endl;
+					}
+				}
+				if (o == 0) {
+					cout << "The book you want to find, was not found!" << endl;
+					Log << "Searched a book but didnot found" << endl;
+					Log.close();
+					exit(0);
+				}
+				Log.close();
+			}
+			if (v == 3) {
+				cout << "Please enter the edition year of book you want to find: ";
+				cin >> editionYear;
+				Book.seekg(0, ios::beg);
+				for (int i = 0; i < u; i++) {
+					Book >> sa;
+					B[i].setBookName(sa);
+					Book >> sb;
+					B[i].setBookWriter(sb);
+					Book >> sc;
+					B[i].setYear(sc);
+					Book >> sd;
+					B[i].setPageNum(sd);
+					if (B[i].getYear() == editionYear) {
+						o = 1;
+						cout << "The book found!" << endl;
+						cout << "BookName: " << B[i].getBookName() << endl;
+						cout << "WriterName: " << B[i].getBookWriter() << endl;
+						cout << "EditionYear: " << B[i].getYear() << endl;
+						cout << "NumberOfPages: " << B[i].getPageNum() << endl;
+						fstream SB("SearchedBooks.txt", ios::in | ios::out | ios::app);
+						if (!SB)
+							cerr << "Couldnot open file SearchedBooks.txt" << endl;
+						se = B[i].getBookName();
+						SB << "BookName: " << se << endl;
+						sf = B[i].getBookWriter();
+						SB << "WriterName: " << sf << endl;
+						sg = B[i].getYear();
+						SB << "EditionYear: " << sg << endl;
+						sh = B[i].getPageNum();
+						SB << "NumberOfPages: " << sh << endl;
+						SB.close();
+						cout << "Information submitted successfully on SearchedBooks.txt file!" << endl;
+						Log << "Searched a book" << endl;
+					}
+				}
+				if (o == 0) {
+					cout << "The book you want to find, was not found!" << endl;
+					Log << "Searched a book but didnot found" << endl;
+					Log.close();
+					exit(0);
+				}
+				Log.close();
+			}
+			if (v == 4) {
+				cout << "Please enter the number of pages of book you want to find: ";
+				cin >> pageNumber;
+				Book.seekg(0, ios::beg);
+				for (int i = 0; i < u; i++) {
+					Book >> sa;
+					B[i].setBookName(sa);
+					Book >> sb;
+					B[i].setBookWriter(sb);
+					Book >> sc;
+					B[i].setYear(sc);
+					Book >> sd;
+					B[i].setPageNum(sd);
+					if (B[i].getPageNum() == pageNumber) {
+						o = 1;
+						cout << "The book found!" << endl;
+						cout << "BookName: " << B[i].getBookName() << endl;
+						cout << "WriterName: " << B[i].getBookWriter() << endl;
+						cout << "EditionYear: " << B[i].getYear() << endl;
+						cout << "NumberOfPages: " << B[i].getPageNum() << endl;
+						fstream SB("SearchedBooks.txt", ios::in | ios::out | ios::app);
+						if (!SB)
+							cerr << "Couldnot open file SearchedBooks.txt" << endl;
+						se = B[i].getBookName();
+						SB << "BookName: " << se << endl;
+						sf = B[i].getBookWriter();
+						SB << "WriterName: " << sf << endl;
+						sg = B[i].getYear();
+						SB << "EditionYear: " << sg << endl;
+						sh = B[i].getPageNum();
+						SB << "NumberOfPages: " << sh << endl;
+						SB.close();
+						cout << "Information submitted successfully on SearchedBooks.txt file!" << endl;
+						Log << "Searched a book" << endl;
+					}
+				}
+				if (o == 0) {
+					cout << "The book you want to find, was not found!" << endl;
+					Log << "Searched a book but didnot found" << endl;
+					Log.close();
+					exit(0);
+				}
+				Log.close();
+			}
 		}
-	}
 	else {
 		cout << "Username or password is incorrect!, Please try again...";
 		Log << "Unsuccessfull Login" << endl;
